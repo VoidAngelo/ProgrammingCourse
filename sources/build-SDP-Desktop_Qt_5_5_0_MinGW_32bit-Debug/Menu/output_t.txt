@@ -1,0 +1,6 @@
+ololo
+lol
+o
+
+Number of matches found for 'o': 5
+Number of matches found for 'l': 4
