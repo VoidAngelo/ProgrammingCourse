@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     Menu \
     Calculations \
-    t0
+    t0 \
+    cppMenu
