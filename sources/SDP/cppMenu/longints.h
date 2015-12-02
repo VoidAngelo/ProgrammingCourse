@@ -3,8 +3,6 @@
 
 class longints {
     public:
-
-
         void calc_longint(long scanned_num)
         {
             num=scanned_num;
