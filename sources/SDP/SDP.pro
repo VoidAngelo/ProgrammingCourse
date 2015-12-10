@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    Menu \
-    Calculations \
-    t0 \
-    cppMenu
+    cMenu \
+    cCalculations \
+    cTests
+
