@@ -56,54 +56,63 @@ void c_matrix_ui()
 
 void c_matrix_cinp()
 {
-    int square;
+    int size_of_matrix;
+
     printf("Type size of square matrix: ");
-    scanf("%d", &square);
+    scanf("%d", &size_of_matrix);
     printf("\n");
+
     int **matrix;
     int i, j;
-    matrix = (int**)malloc(square*sizeof(int*));
-    for(i=0; i<square; i++)
+    matrix = (int**)malloc(size_of_matrix*sizeof(int*));
+    for(i=0; i<size_of_matrix; i++)
     {
-        matrix[i] = (int*)malloc(square*sizeof(int));
+        matrix[i] = (int*)malloc(size_of_matrix*sizeof(int));
     }
+
     puts("Type matrix numbers: ");
-    for(i=0; i<square; i++)
-        for(j=0; j<square; j++)
+    for(i=0; i<size_of_matrix; i++)
+        for(j=0; j<size_of_matrix; j++)
         {
             scanf("%d", &matrix[i][j]);
         }
-    c_matrix_csolution(square, matrix);
+
+    c_matrix_csolution(size_of_matrix, matrix);
+
+    for(i=0; i<size_of_matrix; i++)
+    {
+        free(matrix[i]);
+    }
+    free(matrix);
 }
 
-void c_matrix_csolution(int square, int **matrix)
+void c_matrix_csolution(int size_of_matrix, int **matrix)
 {
     int i, j;
-    c_calc_matrix(square, matrix);
+
+    c_calc_matrix(size_of_matrix, matrix);
+
     puts("Result: ");
-    for(i=0; i<square; i++)
+    for(i=0; i<size_of_matrix; i++)
     {
-        for(j=0; j<square; j++)
+        for(j=0; j<size_of_matrix; j++)
         {
             printf("%5d", matrix[i][j]);
         }
         printf("\n");
     }
+
     printf("\n");
-    for(i=0; i<square; i++)
-    {
-        free(matrix[i]);
-    }
-    free(matrix);
     getch();
     system("cls");
 }
 
 void c_matrix_finp()
 {
-    int square, **matrix;
+    int size_of_matrix, **matrix;
+
     printf("Type size of square matrix: ");
-    scanf("%d", &square);
+    scanf("%d", &size_of_matrix);
     printf("\n");
     printf("Type the input file name\n"
            "(or 0 for default one): ");
@@ -119,27 +128,37 @@ void c_matrix_finp()
         puts("Error. Input file can't be opened.\n");
         c_matrix_ui();
     }
-    c_matrix_inp(square, matrix, finp);
+
+    c_matrix_inp(size_of_matrix, matrix, finp);
+
     fclose(finp);
 }
 
-void c_matrix_inp(int square, int **matrix, FILE *finp)
+void c_matrix_inp(int size_of_matrix, int **matrix, FILE *finp)
 {
     int i, j;
-    matrix = (int**)malloc(square*sizeof(int*));
-    for(i=0; i<square; i++)
+
+    matrix = (int**)malloc(size_of_matrix*sizeof(int*));
+    for(i=0; i<size_of_matrix; i++)
     {
-        matrix[i] = (int*)malloc(square*sizeof(int));
+        matrix[i] = (int*)malloc(size_of_matrix*sizeof(int));
     }
-    for(i=0; i<square; i++)
-        for(j=0; j<square; j++)
+    for(i=0; i<size_of_matrix; i++)
+        for(j=0; j<size_of_matrix; j++)
         {
             fscanf(finp, "%d", &matrix[i][j]);
         }
-    c_matrix_fsolution(square, matrix);
+
+    c_matrix_fsolution(size_of_matrix, matrix);
+
+    for(i=0; i<size_of_matrix; i++)
+    {
+        free(matrix[i]);
+    }
+    free(matrix);
 }
 
-void c_matrix_fsolution(int square, int **matrix)
+void c_matrix_fsolution(int size_of_matrix, int **matrix)
 {
     printf("Type the output file name\n"
            "(or 0 for default one): ");
@@ -155,30 +174,29 @@ void c_matrix_fsolution(int square, int **matrix)
         puts("Error. Output file can't be opened.\n");
         c_matrix_ui();
     }
-    c_matrix_out(square, matrix, fout);
+
+    c_matrix_out(size_of_matrix, matrix, fout);
+
     printf("Check result in %s\n\n", file_o);
     fclose(fout);
     getch();
     system("cls");
 }
 
-void c_matrix_out(int square, int **matrix, FILE *fout)
+void c_matrix_out(int size_of_matrix, int **matrix, FILE *fout)
 {
     int i, j;
-    c_calc_matrix(square, matrix);
-    for(i=0; i<square; i++)
+
+    c_calc_matrix(size_of_matrix, matrix);
+
+    for(i=0; i<size_of_matrix; i++)
     {
-        for(j=0; j<square; j++)
+        for(j=0; j<size_of_matrix; j++)
         {
             fprintf(fout, "%5d", matrix[i][j]);
         }
         fprintf(fout, "\n");
     }
-    for(i=0; i<square; i++)
-    {
-        free(matrix[i]);
-    }
-    free(matrix);
 }
 
 void c_matrix_help()

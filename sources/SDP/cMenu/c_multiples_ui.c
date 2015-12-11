@@ -50,20 +50,20 @@ void c_multiples_ui()
 
 void c_multiples_inp()
 {
-    int i, array_t2[3];
+    int i, numbers[3];
     puts("Type your numbers:\n");
     for (i=0; i<3; i++)
     {
-        scanf("%d", &array_t2[i]);
+        scanf("%d", &numbers[i]);
     }
     printf("\n");
-    c_multiples_solution(array_t2);
+    c_multiples_solution(numbers);
 }
 
-void c_multiples_solution(int *array_t2)
+void c_multiples_solution(int *numbers)
 {
     puts("Result:");
-    c_calc_multiples(array_t2);
+    c_calc_multiples(numbers);
     printf("\n\n");
     getch();
     system("cls");

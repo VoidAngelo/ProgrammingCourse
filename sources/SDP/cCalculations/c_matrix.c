@@ -1,30 +1,30 @@
-#include"c_matrix.h"
+#include "c_matrix.h"
 #include "malloc.h"
 
-void c_calc_matrix(int square, int **matrix)
+void c_calc_matrix(int size_of_matrix, int **matrix)
 {
     int i, j;
     int **matrix_temp;
-    matrix_temp = (int**)malloc(square*sizeof(int*));
-    for(i=0; i<square; i++)
+    matrix_temp = (int**)malloc(size_of_matrix*sizeof(int*));
+    for(i=0; i<size_of_matrix; i++)
     {
-        matrix_temp[i] = (int*)malloc(square*sizeof(int));
+        matrix_temp[i] = (int*)malloc(size_of_matrix*sizeof(int));
     }
-    for(i=0; i<square; i++)
+    for(i=0; i<size_of_matrix; i++)
     {
-        for(j=0; j<square; j++)
+        for(j=0; j<size_of_matrix; j++)
         {
-            matrix_temp[i][j]=matrix[square-1-j][i];
+            matrix_temp[i][j]=matrix[size_of_matrix-1-j][i];
         }
     }
-    for(i=0; i<square; i++)
+    for(i=0; i<size_of_matrix; i++)
     {
-        for(j=0; j<square; j++)
+        for(j=0; j<size_of_matrix; j++)
         {
             matrix[i][j]=matrix_temp[i][j];
         }
     }
-    for(i=0; i<square; i++)
+    for(i=0; i<size_of_matrix; i++)
     {
         free(matrix_temp[i]);
     }

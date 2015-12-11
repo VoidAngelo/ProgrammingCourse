@@ -57,71 +57,89 @@ void c_text_ui()
 void c_text_cinp()
 {
     system("cls");
-    int max = 100, len= 255, t, k, temp, i;
+
+    int max = 100, len= 255, num_of_strings, num_of_keys, temp, i;
+
     puts ("Type text(100 strings max)");
     scanf("%*c");
-    char text[max][len];
-    for (t=0; t<max; t++)
+    char strings[max][len];
+    for (num_of_strings=0; num_of_strings<max; num_of_strings++)
     {
-        printf ("%d: ", t);
-        gets(text[t]);
-        if(!*text[t]) break;
+        printf ("%d: ", num_of_strings);
+        gets(strings[num_of_strings]);
+        if(!*strings[num_of_strings]) break;
     }
-    temp=t;
-    char **a_text;
-    a_text = (char**)malloc(temp*sizeof(char*));
-    for(t=0; t<temp; t++)
+
+    temp=num_of_strings;
+
+    char **a_strings;
+    a_strings = (char**)malloc(temp*sizeof(char*));
+    for(num_of_strings=0; num_of_strings<temp; num_of_strings++)
     {
-        a_text[t] = (char*)malloc(strlen(text[t]));
-        a_text[t] = text[t];
+        a_strings[num_of_strings] = (char*)malloc(strlen(strings[num_of_strings]));
+        a_strings[num_of_strings] = strings[num_of_strings];
     }
+
     system("cls");
+
     puts ("Type keywords(100 words max)");
-    char key[max][len];
-    for (k=0; k<max; k++)
+    char keys[max][len];
+    for (num_of_keys=0; num_of_keys<max; num_of_keys++)
     {
-        printf ("%d: ", k);
-        gets(key[k]);
-        if(!*key[k]) break;
+        printf ("%d: ", num_of_keys);
+        gets(keys[num_of_keys]);
+        if(!*keys[num_of_keys]) break;
     }
-    temp=k;
-    char **a_key;
-    a_key = (char**)malloc(temp*sizeof(char*));
-    for(k=0; k<temp; k++)
+
+    temp=num_of_keys;
+
+    char **a_keys;
+    a_keys = (char**)malloc(temp*sizeof(char*));
+    for(num_of_keys=0; num_of_keys<temp; num_of_keys++)
     {
-        a_key[k] = (char*)malloc(strlen(key[k]));
-        a_key[k] = key[k];
+        a_keys[num_of_keys] = (char*)malloc(strlen(keys[num_of_keys]));
+        a_keys[num_of_keys] = keys[num_of_keys];
     }
+
     system("cls");
-    c_text_csolution(a_text, a_key, t, k);
-    for(i=0; i<t; i++)
+
+    c_text_csolution(a_strings, a_keys, num_of_strings, num_of_keys);
+
+    for(i=0; i<num_of_strings; i++)
     {
-        free(a_text[i]);
+        free(a_strings[i]);
     }
-    free(a_text);
-    for(i=0; i<k; i++)
+    free(a_strings);
+
+    for(i=0; i<num_of_keys; i++)
     {
-        free(a_key[i]);
+        free(a_keys[i]);
     }
-    free(a_key);
+    free(a_keys);
 }
 
-void c_text_csolution(char **text, char **key, int t, int k)
+void c_text_csolution(char **strings, char **keys, int num_of_strings, int num_of_keys)
 {
     int i;
-    for (i=0; i<t; i++)
+
+    for (i=0; i<num_of_strings; i++)
     {
-        printf("%s\n", text[i]);
+        printf("%s\n", strings[i]);
     }
+
     printf ("\n");
+
     int *result;
-    result = (int*)malloc(k*sizeof(int));
-    c_calc_text(text, key, t, k, result);
-    for (i=0; i<k; i++)
+    result = (int*)malloc(num_of_keys*sizeof(int));
+
+    c_calc_text(strings, keys, num_of_strings, num_of_keys, result);
+
+    for (i=0; i<num_of_keys; i++)
     {
-        printf("Number of matches found for '%s'",key[i]);
+        printf("Number of matches found for '%s'",keys[i]);
         printf(": %d\n",result[i]);
     }
+
     free(result);
     getch();
     system("cls");
@@ -130,6 +148,7 @@ void c_text_csolution(char **text, char **key, int t, int k)
 void c_text_finp()
 {
     system("cls");
+
     printf("Type the input file name with text\n"
            "(or 0 for default one): ");
     char file_i1[20];
@@ -144,7 +163,9 @@ void c_text_finp()
         puts("Error. Input file can't be opened.\n");
         c_matrix_ui();
     }
+
     system("cls");
+
     printf("Type the input file name with constructs\n"
            "(or 0 for default one): ");
     char file_i2[20];
@@ -159,7 +180,9 @@ void c_text_finp()
         puts("Error. Input file can't be opened.\n");
         c_matrix_ui();
     }
+
     system("cls");
+
     c_text_inp(finp1, finp2);
     fclose(finp1);
     fclose(finp2);
@@ -167,51 +190,59 @@ void c_text_finp()
 
 void c_text_inp(FILE *finp1, FILE *finp2)
 {
-    int max = 100, len= 255, t, k, i, temp;
-    char **a_text;
-    char text[max][len];
-    for (t=0; t<max; t++)
+    int max = 100, len= 255, num_of_strings, num_of_keys, i, temp;
+
+    char strings[max][len];
+    for (num_of_strings=0; num_of_strings<max; num_of_strings++)
     {
-        fgets(text[t], len, finp1);
-        if(!*text[t]) break;
-        if ( text[t][strlen(text[t])- 1] == '\n') text[t][strlen(text[t])- 1]='\0';
+        fgets(strings[num_of_strings], len, finp1);
+        if(!*strings[num_of_strings]) break;
+        if ( strings[num_of_strings][strlen(strings[num_of_strings])- 1] == '\n') strings[num_of_strings][strlen(strings[num_of_strings])- 1]='\0';
     }
-    temp=t;
-    a_text = (char**)malloc(temp*sizeof(char*));
-    for(t=0; t<temp; t++)
+
+    temp=num_of_strings;
+
+    char **a_strings;
+    a_strings = (char**)malloc(temp*sizeof(char*));
+    for(num_of_strings=0; num_of_strings<temp; num_of_strings++)
     {
-        a_text[t] = (char*)malloc(strlen(text[t]));
-        a_text[t] = text[t];
+        a_strings[num_of_strings] = (char*)malloc(strlen(strings[num_of_strings]));
+        a_strings[num_of_strings] = strings[num_of_strings];
     }
-    char **a_key;
-    char key[max][len];
-    for (k=0; k<max; k++)
+
+    char keys[max][len];
+    for (num_of_keys=0; num_of_keys<max; num_of_keys++)
     {
-        fgets(key[k], len, finp2);
-        if(!*key[k]) break;
-        if ( key[k][strlen(key[k])- 1] == '\n') key[k][strlen(key[k])- 1]='\0';
+        fgets(keys[num_of_keys], len, finp2);
+        if(!*keys[num_of_keys]) break;
+        if ( keys[num_of_keys][strlen(keys[num_of_keys])- 1] == '\n') keys[num_of_keys][strlen(keys[num_of_keys])- 1]='\0';
     }
-    temp=k;
-    a_key = (char**)malloc(temp*sizeof(char*));
-    for(k=0; k<temp; k++)
+
+    temp=num_of_keys;
+
+    char **a_keys;
+    a_keys = (char**)malloc(temp*sizeof(char*));
+    for(num_of_keys=0; num_of_keys<temp; num_of_keys++)
     {
-        a_key[k] = (char*)malloc(strlen(key[k]));
-        a_key[k] = key[k];
+        a_keys[num_of_keys] = (char*)malloc(strlen(keys[num_of_keys]));
+        a_keys[num_of_keys] = keys[num_of_keys];
     }
-    c_text_fsolution(a_text, a_key, t, k);
-    for(i=0; i<t; i++)
+
+    c_text_fsolution(a_strings, a_keys, num_of_strings, num_of_keys);
+
+    for(i=0; i<num_of_strings; i++)
     {
-        free(a_text[i]);
+        free(a_strings[i]);
     }
-    free(a_text);
-    for(i=0; i<k; i++)
+    free(a_strings);
+    for(i=0; i<num_of_keys; i++)
     {
-        free(a_key[i]);
+        free(a_keys[i]);
     }
-    free(a_key);
+    free(a_keys);
 }
 
-void c_text_fsolution(char **text, char **key, int t, int k)
+void c_text_fsolution(char **strings, char **keys, int num_of_strings, int num_of_keys)
 {
     printf("Type the output file name\n"
            "(or 0 for default one): ");
@@ -227,30 +258,37 @@ void c_text_fsolution(char **text, char **key, int t, int k)
         puts("Error. Output file can't be opened.\n");
         c_matrix_ui();
     }
-    c_text_out(text, key, t, k, fout);
+
+    c_text_out(strings, keys, num_of_strings, num_of_keys, fout);
+
     printf("Check result in %s", file_o);
+
     fclose(fout);
     getch();
     system("cls");
 }
 
-void c_text_out(char **text, char **key, int t, int k, FILE *fout)
+void c_text_out(char **strings, char **keys, int num_of_strings, int num_of_keys, FILE *fout)
 {
     int i;
-    for (i=0; i<t; i++)
+
+    for (i=0; i<num_of_strings; i++)
     {
-        fprintf(fout, "%s\n", text[i]);
+        fprintf(fout, "%s\n", strings[i]);
     }
+
     printf ("\n");
+
     int *result;
-    result = (int*)malloc(k*sizeof(int));
-    c_calc_text(text, key, t, k, result);
+    result = (int*)malloc(num_of_keys*sizeof(int));
+    c_calc_text(strings, keys, num_of_strings, num_of_keys, result);
     fprintf(fout, "\n");
-    for (i=0; i<k; i++)
+    for (i=0; i<num_of_keys; i++)
     {
-        fprintf(fout, "Number of matches found for '%s'",key[i]);
+        fprintf(fout, "Number of matches found for '%s'",keys[i]);
         fprintf(fout, ": %d\n",result[i]);
     }
+
     free(result);
 }
 

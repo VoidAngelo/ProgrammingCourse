@@ -1,19 +1,19 @@
-#include"c_text.h"
+#include "c_text.h"
 #include "string.h"
 
-void c_calc_text(char **text, char **key, int t, int k, int *result)
+void c_calc_text(char **strings, char **keys, int num_of_strings, int num_of_keys, int *result)
 {
     int i, j, n;
-    char * pch;
-    for (i=0; i<k; i++)
+    char * match;
+    for (i=0; i<num_of_keys; i++)
     {
         n=0;
-        for (j=0; j<t; j++)
+        for (j=0; j<num_of_strings; j++)
         {
-            pch = strstr (text[j], key[i]);
-            while (pch != NULL)
+            match = strstr (strings[j], keys[i]);
+            while (match != NULL)
             {
-                pch = strstr (pch+1,key[i]);
+                match = strstr (match+1,keys[i]);
                 n++;
             }
         }

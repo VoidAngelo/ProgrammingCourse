@@ -54,11 +54,11 @@ void CTestsTest::c_test_sum()
 
 void CTestsTest::c_test_multiples()
 {
-    int array_t2[3];
-    array_t2[1]=2;
-    array_t2[2]=4;
-    array_t2[3]=8;
-    QCOMPARE(c_calc_multiples(array_t2), 3);
+    int numbers[3];
+    numbers[1]=2;
+    numbers[2]=4;
+    numbers[3]=8;
+    QCOMPARE(c_calc_multiples(numbers), 3);
 }
 
 void CTestsTest::c_test_reversion()
@@ -69,36 +69,36 @@ void CTestsTest::c_test_reversion()
 
 void CTestsTest::c_test_matrix()
 {
-    int square=3;
+    int size_of_matrix=3;
     int **matrix;
     int i, j, k=0;
-    matrix = (int**)malloc(square*sizeof(int*));
-    for(i=0; i<square; i++)
+    matrix = (int**)malloc(size_of_matrix*sizeof(int*));
+    for(i=0; i<size_of_matrix; i++)
     {
-        matrix[i] = (int*)malloc(square*sizeof(int));
+        matrix[i] = (int*)malloc(size_of_matrix*sizeof(int));
     }
-    for(i=0; i<square; i++)
-        for(j=0; j<square; j++)
+    for(i=0; i<size_of_matrix; i++)
+        for(j=0; j<size_of_matrix; j++)
         {
             k++;
             matrix[i][j]=k;
         }
     int **matrix_r;
-    matrix_r = (int**)malloc(square*sizeof(int*));
-    for(i=0; i<square; i++)
+    matrix_r = (int**)malloc(size_of_matrix*sizeof(int*));
+    for(i=0; i<size_of_matrix; i++)
     {
-        matrix_r[i] = (int*)malloc(square*sizeof(int));
+        matrix_r[i] = (int*)malloc(size_of_matrix*sizeof(int));
     }
     k=0;
-    for(i=0; i<square; i++)
-        for(j=0; j<square; j++)
+    for(i=0; i<size_of_matrix; i++)
+        for(j=0; j<size_of_matrix; j++)
         {
             k++;
-            matrix_r[i][j]=k+square*2-4*j-2*i;
+            matrix_r[i][j]=k+size_of_matrix*2-4*j-2*i;
         }
-    c_calc_matrix(square, matrix);
-    QCOMPARE(compare_matrix(matrix, matrix_r, square), 0);
-    for(i=0; i<square; i++)
+    c_calc_matrix(size_of_matrix, matrix);
+    QCOMPARE(compare_matrix(matrix, matrix_r, size_of_matrix), 0);
+    for(i=0; i<size_of_matrix; i++)
     {
         free(matrix[i]);
         free(matrix_r[i]);
@@ -109,42 +109,55 @@ void CTestsTest::c_test_matrix()
 
 void CTestsTest::c_test_text()
 {
-    int t=3, k=2, temp, i;
-    temp=t;
-    char text[3][6] = {"ololo", "lol", "o"};
-    char **a_text;
-    a_text = (char**)malloc(temp*sizeof(char*));
-    for(t=0; t<temp; t++)
+    int num_of_strings=3, num_of_keys=2, temp, i;
+
+    temp=num_of_strings;
+
+    char strings[3][6] = {"ololo", "lol", "o"};
+
+    char **a_strings;
+    a_strings = (char**)malloc(temp*sizeof(char*));
+    for(num_of_strings=0; num_of_strings<temp; num_of_strings++)
     {
-        a_text[t] = (char*)malloc(strlen(text[t]));
-        a_text[t] = text[t];
+        a_strings[num_of_strings] = (char*)malloc(strlen(strings[num_of_strings]));
+        a_strings[num_of_strings] = strings[num_of_strings];
     }
-    temp=k;
-    char key[2][2] = {"o", "l"};
-    char **a_key;
-    a_key = (char**)malloc(temp*sizeof(char*));
-    for(k=0; k<temp; k++)
+
+    temp=num_of_keys;
+
+    char keys[2][2] = {"o", "l"};
+
+    char **a_keys;
+    a_keys = (char**)malloc(temp*sizeof(char*));
+    for(num_of_keys=0; num_of_keys<temp; num_of_keys++)
     {
-        a_key[k] = (char*)malloc(strlen(key[k]));
-        a_key[k] = key[k];
+        a_keys[num_of_keys] = (char*)malloc(strlen(keys[num_of_keys]));
+        a_keys[num_of_keys] = keys[num_of_keys];
     }
+
     int *result;
-    result = (int*)malloc(k*sizeof(int));
-    c_calc_text(a_text, a_key, t, k, result);
+    result = (int*)malloc(num_of_keys*sizeof(int));
+
+    c_calc_text(a_strings, a_keys, num_of_strings, num_of_keys, result);
+
     int result_r[2] = {5, 4};
-    for (i=0; i<k; i++)
+
+    for (i=0; i<num_of_keys; i++)
     QCOMPARE(compare_text(result, result_r), 0);
+
     free(result);
-    for(i=0; i<t; i++)
+
+    for(i=0; i<num_of_strings; i++)
     {
-        free(a_text[i]);
+        free(a_strings[i]);
     }
-    free(a_text);
-    for(i=0; i<k; i++)
+    free(a_strings);
+
+    for(i=0; i<num_of_keys; i++)
     {
-        free(a_key[i]);
+        free(a_keys[i]);
     }
-    free(a_key);
+    free(a_keys);
 }
 
 QTEST_APPLESS_MAIN(CTestsTest)
