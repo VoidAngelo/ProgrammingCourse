@@ -1,10 +1,10 @@
 #include <QString>
 #include <QtTest>
-#include "c_sum.h"
+#include "c_sum_of_digits.h"
 #include "c_multiples.h"
-#include "c_reversion.h"
-#include "c_matrix.h"
-#include "c_text.h"
+#include "c_reversed_num.h"
+#include "c_matrix_turn.h"
+#include "c_keys_in_text.h"
 
 int compare_matrix(int **matrix, int **matrix_r, int square)
 {
@@ -35,24 +35,24 @@ public:
     CTestsTest();
 
 private Q_SLOTS:
-    void c_test_sum();
-    void c_test_multiples();
-    void c_test_reversion();
-    void c_test_matrix();
-    void c_test_text();
+    void c_test_sum_of_digits();
+    void c_test_search_multiples();
+    void c_test_reversed_num();
+    void c_test_matrix_turn();
+    void c_test_keys_in_text();
 };
 
 CTestsTest::CTestsTest()
 {
 }
 
-void CTestsTest::c_test_sum()
+void CTestsTest::c_test_sum_of_digits()
 {
     int num = 1234;
-    QCOMPARE(c_calc_sum(num), 10);
+    QCOMPARE(c_calc_sum_of_digits(num), 10);
 }
 
-void CTestsTest::c_test_multiples()
+void CTestsTest::c_test_search_multiples()
 {
     int numbers[3];
     numbers[1]=2;
@@ -61,13 +61,13 @@ void CTestsTest::c_test_multiples()
     QCOMPARE(c_calc_multiples(numbers), 3);
 }
 
-void CTestsTest::c_test_reversion()
+void CTestsTest::c_test_reversed_num()
 {
     int num = 1234;
-    QCOMPARE(c_calc_reversion(num), 4321);
+    QCOMPARE(c_calc_reversed_num(num), 4321);
 }
 
-void CTestsTest::c_test_matrix()
+void CTestsTest::c_test_matrix_turn()
 {
     int size_of_matrix=3;
     int **matrix;
@@ -96,7 +96,7 @@ void CTestsTest::c_test_matrix()
             k++;
             matrix_r[i][j]=k+size_of_matrix*2-4*j-2*i;
         }
-    c_calc_matrix(size_of_matrix, matrix);
+    c_calc_matrix_turn(size_of_matrix, matrix);
     QCOMPARE(compare_matrix(matrix, matrix_r, size_of_matrix), 0);
     for(i=0; i<size_of_matrix; i++)
     {
@@ -107,7 +107,7 @@ void CTestsTest::c_test_matrix()
     free(matrix_r);
 }
 
-void CTestsTest::c_test_text()
+void CTestsTest::c_test_keys_in_text()
 {
     int num_of_strings=3, num_of_keys=2, temp, i;
 
@@ -138,7 +138,7 @@ void CTestsTest::c_test_text()
     int *result;
     result = (int*)malloc(num_of_keys*sizeof(int));
 
-    c_calc_text(a_strings, a_keys, num_of_strings, num_of_keys, result);
+    c_calc_keys_in_text(a_strings, a_keys, num_of_strings, num_of_keys, result);
 
     int result_r[2] = {5, 4};
 

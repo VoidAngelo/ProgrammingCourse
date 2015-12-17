@@ -1,6 +1,6 @@
-#include"c_reversion.h"
+#include"c_reversed_num.h"
 
-int c_calc_reversion(int num)
+int c_calc_reversed_num(int num)
 {
     int counted=0, temp=0;
     while(num!=0)

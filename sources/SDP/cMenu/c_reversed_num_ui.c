@@ -1,11 +1,11 @@
 #include "c_main.h"
-#include "c_sum.h"
-#include "c_sum_ui.h"
+#include "c_reversed_num.h"
+#include "c_reversed_num_ui.h"
 
-void c_sum_ui()
+void c_reversed_num_ui()
 {
     int way;
-    puts("Summ of digits task");
+    puts("Reversion of given number task");
     puts("Choose option:");
     puts("1. Input number from console");
     puts("2. Help");
@@ -21,13 +21,13 @@ void c_sum_ui()
             break;
         case 1:
             system("cls");
-            c_sum_inp();
-            c_sum_ui();
+            c_reversed_num_inp();
+            c_reversed_num_ui();
             break;
         case 2:
             system("cls");
-            c_sum_help();
-            c_sum_ui();
+            c_reversed_num_help();
+            c_reversed_num_ui();
             break;
         case 9:
             system("cls");
@@ -36,7 +36,7 @@ void c_sum_ui()
         default:
             system("cls");
             puts("Error. There's no such option.\n");
-            c_sum_ui();
+            c_reversed_num_ui();
             break;
         }
     }
@@ -44,27 +44,27 @@ void c_sum_ui()
     {
         system("cls");
         puts("Error. Wrong input data type.\n");
-        c_sum_ui();
+        c_reversed_num_ui();
     }
 }
 
-void c_sum_inp()
+void c_reversed_num_inp()
 {
-    int num_t1;
+    int num_t3;
     puts("Type your number\n");
-    scanf("%d", &num_t1);
-    c_sum_solution(num_t1);
+    scanf("%d", &num_t3);
+    c_reversed_num_solution(num_t3);
 }
 
-void c_sum_solution(int num_t1)
+void c_reversed_num_solution(int num_t3)
 {
-    int result_t1 = c_calc_sum(num_t1);
-    printf("Result: %d\n\n", result_t1);
+    int result_t3 = c_calc_reversed_num(num_t3);
+    printf("Result: %d\n\n", result_t3);
     getch();
     system("cls");
 }
 
-void c_sum_help()
+void c_reversed_num_help()
 {
     puts("HELP:");
 }

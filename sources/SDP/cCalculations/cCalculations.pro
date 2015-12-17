@@ -11,17 +11,17 @@ TEMPLATE = lib
 CONFIG += staticlib
 
 SOURCES += \
-    c_matrix.c \
-    c_reversion.c \
-    c_text.c \
+    c_matrix_turn.c \
+    c_reversed_num.c \
+    c_sum_of_digits.c \
     c_multiples.c \
-    c_sum.c
+    c_keys_in_text.c
 
 HEADERS += \
-    c_reversion.h \
-    c_text.h \
-    c_sum.h \
-    c_matrix.h \
+    c_matrix_turn.h \
+    c_reversed_num.h \
+    c_sum_of_digits.h \
+    c_keys_in_text.h \
     c_multiples.h
 unix {
     target.path = /usr/lib

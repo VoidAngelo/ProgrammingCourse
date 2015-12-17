@@ -1,8 +1,8 @@
 #include "c_main.h"
-#include "c_text.h"
-#include "c_text_ui.h"
+#include "c_keys_in_text.h"
+#include "c_keys_in_text_ui.h"
 
-void c_text_ui()
+void c_keys_in_text_ui()
 {
     int way;
     puts("Search of text constructs task");
@@ -22,18 +22,18 @@ void c_text_ui()
             break;
         case 1:
             system("cls");
-            c_text_cinp();
-            c_text_ui();
+            c_keys_in_text_cinp();
+            c_keys_in_text_ui();
             break;
         case 2:
             system("cls");
-            c_text_finp();
-            c_text_ui();
+            c_keys_in_text_finp();
+            c_keys_in_text_ui();
             break;
         case 3:
             system("cls");
-            c_text_help();
-            c_text_ui();
+            c_keys_in_text_help();
+            c_keys_in_text_ui();
             break;
         case 9:
             system("cls");
@@ -42,7 +42,7 @@ void c_text_ui()
         default:
             system("cls");
             puts("Error. There's no such option.\n");
-            c_text_ui();
+            c_keys_in_text_ui();
             break;
         }
     }
@@ -50,11 +50,11 @@ void c_text_ui()
     {
         system("cls");
         puts("Error. Wrong input data type.\n");
-        c_text_ui();
+        c_keys_in_text_ui();
     }
 }
 
-void c_text_cinp()
+void c_keys_in_text_cinp()
 {
     system("cls");
 
@@ -103,7 +103,7 @@ void c_text_cinp()
 
     system("cls");
 
-    c_text_csolution(a_strings, a_keys, num_of_strings, num_of_keys);
+    c_keys_in_text_csolution(a_strings, a_keys, num_of_strings, num_of_keys);
 
     for(i=0; i<num_of_strings; i++)
     {
@@ -118,7 +118,7 @@ void c_text_cinp()
     free(a_keys);
 }
 
-void c_text_csolution(char **strings, char **keys, int num_of_strings, int num_of_keys)
+void c_keys_in_text_csolution(char **strings, char **keys, int num_of_strings, int num_of_keys)
 {
     int i;
 
@@ -132,7 +132,7 @@ void c_text_csolution(char **strings, char **keys, int num_of_strings, int num_o
     int *result;
     result = (int*)malloc(num_of_keys*sizeof(int));
 
-    c_calc_text(strings, keys, num_of_strings, num_of_keys, result);
+    c_calc_keys_in_text(strings, keys, num_of_strings, num_of_keys, result);
 
     for (i=0; i<num_of_keys; i++)
     {
@@ -145,7 +145,7 @@ void c_text_csolution(char **strings, char **keys, int num_of_strings, int num_o
     system("cls");
 }
 
-void c_text_finp()
+void c_keys_in_text_finp()
 {
     system("cls");
 
@@ -161,7 +161,7 @@ void c_text_finp()
     {
         system("cls");
         puts("Error. Input file can't be opened.\n");
-        c_matrix_ui();
+        c_matrix_turn_ui();
     }
 
     system("cls");
@@ -178,17 +178,17 @@ void c_text_finp()
     {
         system("cls");
         puts("Error. Input file can't be opened.\n");
-        c_matrix_ui();
+        c_matrix_turn_ui();
     }
 
     system("cls");
 
-    c_text_inp(finp1, finp2);
+    c_keys_in_text_inp(finp1, finp2);
     fclose(finp1);
     fclose(finp2);
 }
 
-void c_text_inp(FILE *finp1, FILE *finp2)
+void c_keys_in_text_inp(FILE *finp1, FILE *finp2)
 {
     int max = 100, len= 255, num_of_strings, num_of_keys, i, temp;
 
@@ -228,7 +228,7 @@ void c_text_inp(FILE *finp1, FILE *finp2)
         a_keys[num_of_keys] = keys[num_of_keys];
     }
 
-    c_text_fsolution(a_strings, a_keys, num_of_strings, num_of_keys);
+    c_keys_in_text_fsolution(a_strings, a_keys, num_of_strings, num_of_keys);
 
     for(i=0; i<num_of_strings; i++)
     {
@@ -242,7 +242,7 @@ void c_text_inp(FILE *finp1, FILE *finp2)
     free(a_keys);
 }
 
-void c_text_fsolution(char **strings, char **keys, int num_of_strings, int num_of_keys)
+void c_keys_in_text_fsolution(char **strings, char **keys, int num_of_strings, int num_of_keys)
 {
     printf("Type the output file name\n"
            "(or 0 for default one): ");
@@ -256,10 +256,10 @@ void c_text_fsolution(char **strings, char **keys, int num_of_strings, int num_o
     {
         system("cls");
         puts("Error. Output file can't be opened.\n");
-        c_matrix_ui();
+        c_matrix_turn_ui();
     }
 
-    c_text_out(strings, keys, num_of_strings, num_of_keys, fout);
+    c_keys_in_text_out(strings, keys, num_of_strings, num_of_keys, fout);
 
     printf("Check result in %s", file_o);
 
@@ -268,7 +268,7 @@ void c_text_fsolution(char **strings, char **keys, int num_of_strings, int num_o
     system("cls");
 }
 
-void c_text_out(char **strings, char **keys, int num_of_strings, int num_of_keys, FILE *fout)
+void c_keys_in_text_out(char **strings, char **keys, int num_of_strings, int num_of_keys, FILE *fout)
 {
     int i;
 
@@ -281,7 +281,7 @@ void c_text_out(char **strings, char **keys, int num_of_strings, int num_of_keys
 
     int *result;
     result = (int*)malloc(num_of_keys*sizeof(int));
-    c_calc_text(strings, keys, num_of_strings, num_of_keys, result);
+    c_calc_keys_in_text(strings, keys, num_of_strings, num_of_keys, result);
     fprintf(fout, "\n");
     for (i=0; i<num_of_keys; i++)
     {
@@ -292,7 +292,7 @@ void c_text_out(char **strings, char **keys, int num_of_strings, int num_of_keys
     free(result);
 }
 
-void c_text_help()
+void c_keys_in_text_help()
 {
     puts("HELP:");
 }

@@ -20,7 +20,7 @@ int ui()
                 break;
             case 1:
                 system("cls");
-                c_sum_ui();
+                c_sum_of_digits_ui();
                 break;
             case 2:
                 system("cls");
@@ -28,15 +28,15 @@ int ui()
                 break;
             case 3:
                 system("cls");
-                c_reversion_ui();
+                c_reversed_num_ui();
                 break;
             case 4:
                 system("cls");
-                c_matrix_ui();
+                c_matrix_turn_ui();
                 break;
             case 5:
                 system("cls");
-                c_text_ui();
+                c_keys_in_text_ui();
                 break;
             default:
                 system("cls");

@@ -1,11 +1,11 @@
 #include "c_main.h"
-#include "c_reversion.h"
-#include "c_reversion_ui.h"
+#include "c_sum_of_digits.h"
+#include "c_sum_of_digits_ui.h"
 
-void c_reversion_ui()
+void c_sum_of_digits_ui()
 {
     int way;
-    puts("Reversion of given number task");
+    puts("Summ of digits task");
     puts("Choose option:");
     puts("1. Input number from console");
     puts("2. Help");
@@ -21,13 +21,13 @@ void c_reversion_ui()
             break;
         case 1:
             system("cls");
-            c_reversion_inp();
-            c_reversion_ui();
+            c_sum_of_digits_inp();
+            c_sum_of_digits_ui();
             break;
         case 2:
             system("cls");
-            c_reversion_help();
-            c_reversion_ui();
+            c_sum_of_digits_help();
+            c_sum_of_digits_ui();
             break;
         case 9:
             system("cls");
@@ -36,7 +36,7 @@ void c_reversion_ui()
         default:
             system("cls");
             puts("Error. There's no such option.\n");
-            c_reversion_ui();
+            c_sum_of_digits_ui();
             break;
         }
     }
@@ -44,27 +44,27 @@ void c_reversion_ui()
     {
         system("cls");
         puts("Error. Wrong input data type.\n");
-        c_reversion_ui();
+        c_sum_of_digits_ui();
     }
 }
 
-void c_reversion_inp()
+void c_sum_of_digits_inp()
 {
-    int num_t3;
+    int num_t1;
     puts("Type your number\n");
-    scanf("%d", &num_t3);
-    c_reversion_solution(num_t3);
+    scanf("%d", &num_t1);
+    c_sum_of_digits_solution(num_t1);
 }
 
-void c_reversion_solution(int num_t3)
+void c_sum_of_digits_solution(int num_t1)
 {
-    int result_t3 = c_calc_reversion(num_t3);
-    printf("Result: %d\n\n", result_t3);
+    int result_t1 = c_calc_sum_of_digits(num_t1);
+    printf("Result: %d\n\n", result_t1);
     getch();
     system("cls");
 }
 
-void c_reversion_help()
+void c_sum_of_digits_help()
 {
     puts("HELP:");
 }

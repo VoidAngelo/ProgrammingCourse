@@ -1,7 +1,7 @@
-#include "c_text.h"
+#include "c_keys_in_text.h"
 #include "string.h"
 
-void c_calc_text(char **strings, char **keys, int num_of_strings, int num_of_keys, int *result)
+void c_calc_keys_in_text(char **strings, char **keys, int num_of_strings, int num_of_keys, int *result)
 {
     int i, j, n;
     char * match;

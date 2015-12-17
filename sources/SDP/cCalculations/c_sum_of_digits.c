@@ -1,5 +1,6 @@
-#include"c_sum.h"
-int c_calc_sum(int num)
+#include"c_sum_of_digits.h"
+
+int c_calc_sum_of_digits(int num)
 {
     int counted=0, temp=0;
     while(num!=0)

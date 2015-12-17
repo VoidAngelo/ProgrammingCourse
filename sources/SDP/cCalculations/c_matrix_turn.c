@@ -1,7 +1,7 @@
-#include "c_matrix.h"
+#include "c_matrix_turn.h"
 #include "malloc.h"
 
-void c_calc_matrix(int size_of_matrix, int **matrix)
+void c_calc_matrix_turn(int size_of_matrix, int **matrix)
 {
     int i, j;
     int **matrix_temp;

@@ -1,8 +1,8 @@
 #include "c_main.h"
-#include "c_matrix.h"
-#include "c_matrix_ui.h"
+#include "c_matrix_turn.h"
+#include "c_matrix_turn_ui.h"
 
-void c_matrix_ui()
+void c_matrix_turn_ui()
 {
     int num;
     puts("Matrix turn task");
@@ -22,18 +22,18 @@ void c_matrix_ui()
             break;
         case 1:
             system("cls");
-            c_matrix_cinp();
-            c_matrix_ui();
+            c_matrix_turn_cinp();
+            c_matrix_turn_ui();
             break;
         case 2:
             system("cls");
-            c_matrix_finp();
-            c_matrix_ui();
+            c_matrix_turn_finp();
+            c_matrix_turn_ui();
             break;
         case 3:
             system("cls");
-            c_matrix_help();
-            c_matrix_ui();
+            c_matrix_turn_help();
+            c_matrix_turn_ui();
             break;
         case 9:
             system("cls");
@@ -42,7 +42,7 @@ void c_matrix_ui()
         default:
             system("cls");
             puts("Error! Invalid number.\n");
-            c_matrix_ui();
+            c_matrix_turn_ui();
             break;
         }
     }
@@ -50,11 +50,11 @@ void c_matrix_ui()
     {
         system("cls");
         puts("Error! Input a number.\n");
-        c_matrix_ui();
+        c_matrix_turn_ui();
     }
 }
 
-void c_matrix_cinp()
+void c_matrix_turn_cinp()
 {
     int size_of_matrix;
 
@@ -77,7 +77,7 @@ void c_matrix_cinp()
             scanf("%d", &matrix[i][j]);
         }
 
-    c_matrix_csolution(size_of_matrix, matrix);
+    c_matrix_turn_csolution(size_of_matrix, matrix);
 
     for(i=0; i<size_of_matrix; i++)
     {
@@ -86,11 +86,11 @@ void c_matrix_cinp()
     free(matrix);
 }
 
-void c_matrix_csolution(int size_of_matrix, int **matrix)
+void c_matrix_turn_csolution(int size_of_matrix, int **matrix)
 {
     int i, j;
 
-    c_calc_matrix(size_of_matrix, matrix);
+    c_calc_matrix_turn(size_of_matrix, matrix);
 
     puts("Result: ");
     for(i=0; i<size_of_matrix; i++)
@@ -107,7 +107,7 @@ void c_matrix_csolution(int size_of_matrix, int **matrix)
     system("cls");
 }
 
-void c_matrix_finp()
+void c_matrix_turn_finp()
 {
     int size_of_matrix, **matrix;
 
@@ -126,15 +126,15 @@ void c_matrix_finp()
     {
         system("cls");
         puts("Error. Input file can't be opened.\n");
-        c_matrix_ui();
+        c_matrix_turn_ui();
     }
 
-    c_matrix_inp(size_of_matrix, matrix, finp);
+    c_matrix_turn_inp(size_of_matrix, matrix, finp);
 
     fclose(finp);
 }
 
-void c_matrix_inp(int size_of_matrix, int **matrix, FILE *finp)
+void c_matrix_turn_inp(int size_of_matrix, int **matrix, FILE *finp)
 {
     int i, j;
 
@@ -149,7 +149,7 @@ void c_matrix_inp(int size_of_matrix, int **matrix, FILE *finp)
             fscanf(finp, "%d", &matrix[i][j]);
         }
 
-    c_matrix_fsolution(size_of_matrix, matrix);
+    c_matrix_turn_fsolution(size_of_matrix, matrix);
 
     for(i=0; i<size_of_matrix; i++)
     {
@@ -158,7 +158,7 @@ void c_matrix_inp(int size_of_matrix, int **matrix, FILE *finp)
     free(matrix);
 }
 
-void c_matrix_fsolution(int size_of_matrix, int **matrix)
+void c_matrix_turn_fsolution(int size_of_matrix, int **matrix)
 {
     printf("Type the output file name\n"
            "(or 0 for default one): ");
@@ -172,10 +172,10 @@ void c_matrix_fsolution(int size_of_matrix, int **matrix)
     {
         system("cls");
         puts("Error. Output file can't be opened.\n");
-        c_matrix_ui();
+        c_matrix_turn_ui();
     }
 
-    c_matrix_out(size_of_matrix, matrix, fout);
+    c_matrix_turn_out(size_of_matrix, matrix, fout);
 
     printf("Check result in %s\n\n", file_o);
     fclose(fout);
@@ -183,11 +183,11 @@ void c_matrix_fsolution(int size_of_matrix, int **matrix)
     system("cls");
 }
 
-void c_matrix_out(int size_of_matrix, int **matrix, FILE *fout)
+void c_matrix_turn_out(int size_of_matrix, int **matrix, FILE *fout)
 {
     int i, j;
 
-    c_calc_matrix(size_of_matrix, matrix);
+    c_calc_matrix_turn(size_of_matrix, matrix);
 
     for(i=0; i<size_of_matrix; i++)
     {
@@ -199,7 +199,7 @@ void c_matrix_out(int size_of_matrix, int **matrix, FILE *fout)
     }
 }
 
-void c_matrix_help()
+void c_matrix_turn_help()
 {
     puts("HELP:");
 }
