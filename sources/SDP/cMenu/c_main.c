@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
     if (argc > 1)
     {
         int trigger = 0;
-        if (strcmp(argv[1], "--imode") == 0 || strcmp(argv[1], "-i") == 0)
+        if (strcmp(argv[1], "--interactive") == 0 || strcmp(argv[1], "-i") == 0)
         {
             if (argc == 2)
                 ui();
@@ -28,10 +28,10 @@ int main(int argc, char* argv[])
             }
             trigger++;
         }
-        if (strcmp(argv[1], "--task1") == 0 || strcmp(argv[1], "-t1") == 0)
+        if (strcmp(argv[1], "--sum") == 0 || strcmp(argv[1], "-s") == 0)
         {
             if (argc == 3)
-                cl_text(argv);
+                cl_keys_in_text(argv);
             else
             {
                 puts("Incorrect number of parameters.");
@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
             }
             trigger++;
         }
-        if (strcmp(argv[1], "--task2") == 0 || strcmp(argv[1], "-t2") == 0)
+        if (strcmp(argv[1], "--multiples") == 0 || strcmp(argv[1], "-m") == 0)
         {
             if (argc == 5)
                 cl_multiples(argv);
@@ -50,10 +50,10 @@ int main(int argc, char* argv[])
             }
             trigger++;
         }
-        if (strcmp(argv[1], "--task3") == 0 || strcmp(argv[1], "-t3") == 0)
+        if (strcmp(argv[1], "--reversed") == 0 || strcmp(argv[1], "-r") == 0)
         {
             if (argc == 3)
-                cl_reversion(argv);
+                cl_reversed_number(argv);
             else
             {
                 puts("Incorrect number of parameters.");
@@ -61,10 +61,10 @@ int main(int argc, char* argv[])
             }
             trigger++;
         }
-        if (strcmp(argv[1], "--task4") == 0 || strcmp(argv[1], "-t4") == 0)
+        if (strcmp(argv[1], "--turn") == 0 || strcmp(argv[1], "-t") == 0)
         {
             if (argc == 5)
-                cl_matrix(argv);
+                cl_matrix_turn(argv);
             else
             {
                 puts("Incorrect number of parameters.");
@@ -72,10 +72,10 @@ int main(int argc, char* argv[])
             }
             trigger++;
         }
-        if (strcmp(argv[1], "--task5") == 0 || strcmp(argv[1], "-t5") == 0)
+        if (strcmp(argv[1], "--keys") == 0 || strcmp(argv[1], "-k") == 0)
         {
             if (argc == 5)
-                cl_text(argv);
+                cl_keys_in_text(argv);
             else
             {
                 puts("Incorrect number of parameters.");

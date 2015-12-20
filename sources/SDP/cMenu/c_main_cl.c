@@ -1,6 +1,6 @@
 #include "c_main_cl.h"
 
-void cl_sum(char* argv[])
+void cl_sum_of_digits(char* argv[])
 {
     int num_t1 = atoi(argv[2]);
     c_sum_of_digits_solution(num_t1);
@@ -16,13 +16,13 @@ void cl_multiples(char* argv[])
     c_multiples_solution(array_t2);
 }
 
-void cl_reversion(char* argv[])
+void cl_reversed_number(char* argv[])
 {
     int num_t3 = atoi(argv[2]);
     c_reversed_num_solution(num_t3);
 }
 
-void cl_matrix(char* argv[])
+void cl_matrix_turn(char* argv[])
 {
     int square = atoi(argv[2]);
     char *file_i;
@@ -64,7 +64,7 @@ void cl_matrix(char* argv[])
     fclose(fout);
 }
 
-void cl_text(char* argv[])
+void cl_keys_in_text(char* argv[])
 {
     char *file_i1;
     file_i1 = argv[2];
