@@ -51,7 +51,7 @@ void c_sum_of_digits_ui()
 void c_sum_of_digits_inp()
 {
     int num_t1;
-    puts("Type your number\n");
+    puts("Type your number: ");
     scanf("%d", &num_t1);
     c_sum_of_digits_solution(num_t1);
 }

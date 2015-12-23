@@ -1,0 +1,23 @@
+#ifndef INT_UNLIMITED_ACTIONS
+#define INT_UNLIMITED_ACTIONS
+
+#include "arrayapp.h"
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+class int_unlim_actions
+{
+private:
+    void sum();
+    void subt();
+    void mult();
+    void to_int();
+    void copy();
+public:
+    void actions();
+};
+
+#endif // INT_UNLIMITED_ACTIONS
+

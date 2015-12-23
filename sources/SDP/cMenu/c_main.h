@@ -1,5 +1,5 @@
-#ifndef MAIN
-#define MAIN
+#ifndef C_MAIN
+#define C_MAIN
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,5 +15,5 @@
 int ui();
 void help();
 
-#endif // MAIN
+#endif // C_MAIN
 

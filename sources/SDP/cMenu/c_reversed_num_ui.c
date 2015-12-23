@@ -51,7 +51,7 @@ void c_reversed_num_ui()
 void c_reversed_num_inp()
 {
     int num_t3;
-    puts("Type your number\n");
+    puts("Type your number: ");
     scanf("%d", &num_t3);
     c_reversed_num_solution(num_t3);
 }
