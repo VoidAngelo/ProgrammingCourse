@@ -1,0 +1,842 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+%\usepackage{tikz-uml}               % uml диаграммы
+
+% TODOs
+\usepackage[%
+  colorinlistoftodos,
+  shadow
+]{todonotes}
+
+% Генератор текста
+\usepackage{blindtext}
+
+%------------------------------------------------------------------------------
+
+% Подсветка синтаксиса
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+ 
+ % Цвета для кода
+\definecolor{string}{HTML}{B40000} % цвет строк в коде
+\definecolor{comment}{HTML}{008000} % цвет комментариев в коде
+\definecolor{keyword}{HTML}{1A00FF} % цвет ключевых слов в коде
+\definecolor{morecomment}{HTML}{8000FF} % цвет include и других элементов в коде
+\definecolor{captiontext}{HTML}{FFFFFF} % цвет текста заголовка в коде
+\definecolor{captionbk}{HTML}{999999} % цвет фона заголовка в коде
+\definecolor{bk}{HTML}{FFFFFF} % цвет фона в коде
+\definecolor{frame}{HTML}{999999} % цвет рамки в коде
+\definecolor{brackets}{HTML}{B40000} % цвет скобок в коде
+ 
+ % Настройки отображения кода
+\lstset{
+language=C, % Язык кода по умолчанию
+morekeywords={*,...}, % если хотите добавить ключевые слова, то добавляйте
+ % Цвета
+keywordstyle=\color{keyword}\ttfamily\bfseries,
+stringstyle=\color{string}\ttfamily,
+commentstyle=\color{comment}\ttfamily\itshape,
+morecomment=[l][\color{morecomment}]{\#}, 
+ % Настройки отображения     
+breaklines=true, % Перенос длинных строк
+basicstyle=\ttfamily\footnotesize, % Шрифт для отображения кода
+backgroundcolor=\color{bk}, % Цвет фона кода
+%frame=lrb,xleftmargin=\fboxsep,xrightmargin=-\fboxsep, % Рамка, подогнанная к заголовку
+frame=tblr
+rulecolor=\color{frame}, % Цвет рамки
+tabsize=3, % Размер табуляции в пробелах
+showstringspaces=false,
+ % Настройка отображения номеров строк. Если не нужно, то удалите весь блок
+numbers=left, % Слева отображаются номера строк
+stepnumber=1, % Каждую строку нумеровать
+numbersep=5pt, % Отступ от кода 
+numberstyle=\small\color{black}, % Стиль написания номеров строк
+ % Для отображения русского языка
+extendedchars=true,
+literate={Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+  {~}{{\textasciitilde}}1
+  {а}{{\selectfont\char224}}1
+  {б}{{\selectfont\char225}}1
+  {в}{{\selectfont\char226}}1
+  {г}{{\selectfont\char227}}1
+  {д}{{\selectfont\char228}}1
+  {е}{{\selectfont\char229}}1
+  {ё}{{\"e}}1
+  {ж}{{\selectfont\char230}}1
+  {з}{{\selectfont\char231}}1
+  {и}{{\selectfont\char232}}1
+  {й}{{\selectfont\char233}}1
+  {к}{{\selectfont\char234}}1
+  {л}{{\selectfont\char235}}1
+  {м}{{\selectfont\char236}}1
+  {н}{{\selectfont\char237}}1
+  {о}{{\selectfont\char238}}1
+  {п}{{\selectfont\char239}}1
+  {р}{{\selectfont\char240}}1
+  {с}{{\selectfont\char241}}1
+  {т}{{\selectfont\char242}}1
+  {у}{{\selectfont\char243}}1
+  {ф}{{\selectfont\char244}}1
+  {х}{{\selectfont\char245}}1
+  {ц}{{\selectfont\char246}}1
+  {ч}{{\selectfont\char247}}1
+  {ш}{{\selectfont\char248}}1
+  {щ}{{\selectfont\char249}}1
+  {ъ}{{\selectfont\char250}}1
+  {ы}{{\selectfont\char251}}1
+  {ь}{{\selectfont\char252}}1
+  {э}{{\selectfont\char253}}1
+  {ю}{{\selectfont\char254}}1
+  {я}{{\selectfont\char255}}1
+  {А}{{\selectfont\char192}}1
+  {Б}{{\selectfont\char193}}1
+  {В}{{\selectfont\char194}}1
+  {Г}{{\selectfont\char195}}1
+  {Д}{{\selectfont\char196}}1
+  {Е}{{\selectfont\char197}}1
+  {Ё}{{\"E}}1
+  {Ж}{{\selectfont\char198}}1
+  {З}{{\selectfont\char199}}1
+  {И}{{\selectfont\char200}}1
+  {Й}{{\selectfont\char201}}1
+  {К}{{\selectfont\char202}}1
+  {Л}{{\selectfont\char203}}1
+  {М}{{\selectfont\char204}}1
+  {Н}{{\selectfont\char205}}1
+  {О}{{\selectfont\char206}}1
+  {П}{{\selectfont\char207}}1
+  {Р}{{\selectfont\char208}}1
+  {С}{{\selectfont\char209}}1
+  {Т}{{\selectfont\char210}}1
+  {У}{{\selectfont\char211}}1
+  {Ф}{{\selectfont\char212}}1
+  {Х}{{\selectfont\char213}}1
+  {Ц}{{\selectfont\char214}}1
+  {Ч}{{\selectfont\char215}}1
+  {Ш}{{\selectfont\char216}}1
+  {Щ}{{\selectfont\char217}}1
+  {Ъ}{{\selectfont\char218}}1
+  {Ы}{{\selectfont\char219}}1
+  {Ь}{{\selectfont\char220}}1
+  {Э}{{\selectfont\char221}}1
+  {Ю}{{\selectfont\char222}}1
+  {Я}{{\selectfont\char223}}1
+  {і}{{\selectfont\char105}}1
+  {ї}{{\selectfont\char168}}1
+  {є}{{\selectfont\char185}}1
+  {ґ}{{\selectfont\char160}}1
+  {І}{{\selectfont\char73}}1
+  {Ї}{{\selectfont\char136}}1
+  {Є}{{\selectfont\char153}}1
+  {Ґ}{{\selectfont\char128}}1
+  {\{}{{{\color{brackets}\{}}}1 % Цвет скобок {
+  {\}}{{{\color{brackets}\}}}}1 % Цвет скобок }
+}
+ 
+ % Для настройки заголовка кода
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{сaptiontext}}
+\DeclareCaptionFormat{listing}{\parbox{\linewidth}{\colorbox{сaptionbk}{\parbox{\linewidth}{#1#2#3}}\vskip-4pt}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\renewcommand{\lstlistingname}{Код} % Переименование Listings в нужное именование структуры
+
+
+%------------------------------------------------------------------------------
+
+\author{Лукашенко Р.Б.}
+\title{Программирование на С и С++}
+\begin{document}
+%\listoftodos
+\maketitle
+
+\tableofcontents{}
+
+\chapter{Основные конструкции языка}
+%############################################################
+\section{Задание 1.1. Перевод дюймов в метрическую систему}
+\subsection{Задание}
+
+\hspace{\parindent}Задано целое число от 0 до 999. Определить сумму его цифр.
+
+\subsection{Теоретические сведения}
+\hspace{\parindent}Для реализации данной задачи были использованы стандартные функции ввода-вывода \texttt{scanf}, \texttt{printf}, \texttt{puts} из стандартной библиотеки языка \verb+С+, объявленные в заголовочном файле \textit{stdio.h}.
+
+При помощи операторов ветвления \texttt{if-else} и \texttt{switch} реализовано интерактивное подменю для более удобного взаимодествия пользователя с программой.
+
+\subsection{Проектирование}
+\hspace{\parindent}В ходе проектирования было решено выделить 5 функций:
+\begin{enumerate}
+ 	\item Вычисление суммы
+ 	
+ 	\verb+int c_calc_sum_of_digits(int);+
+ 	
+	Параметром функции является число типа \verb+int+, которое вводит пользователь.
+	Возвращается число типа \verb+int+, которое и является суммой разрядов.	 
+		 
+		 
+	\item Меню с первоначальным пользовательским взаимодействием
+	
+	\verb+void c_sum_of_digits_ui();+
+	
+	Пользователю предлагается выбрать консольный ввод, вызов справки, возварт к главное меню или завершение программы.	
+		 
+		 
+	\item Основное пользовательское взаимодействие
+	
+	\verb+void c_sum_of_digits_inp();+
+
+	Пользователю предлагается ввести число, после чего вызывается функция для для решения задачи и вывода результата в консоль.
+	
+	
+	\item Решение задачи и вывода результата в консоль
+	
+	\verb+void c_sum_of_digits_solution(int);+
+
+	В качестве параметра передаётся число типа \verb+int+. Вызывается функция вычисления суммы. Результат выводится в консоль.	
+	
+	 
+	\item Вспомогательная информация
+	
+	\verb+void c_sum_of_digits_help();+
+	
+	Вывод справки в консоль.
+\end{enumerate}
+
+\subsection{Описание тестового стенда и методики тестирования}
+\hspace{\parindent}Среда разработки QtCreator 3.5.1, компилятор MinGW (x86 64 bit), операционная система Windows 10 64 bit.
+В процессе выполнения задания производилось ручное тестирование.
+Модульное тестирование реализовано при помощи фреймворка QtTest.
+
+\subsection{Тестирование}
+\begin{table}[h]
+\caption{Тестирование вычисления суммы}
+\label{sum_of_digits_test}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Введённое число & Сумма разрядов & Тип теста & Результат \\ 
+\hline 
+1234 & 10 & Модульный & Успешно \\ 
+\hline 
+4321 & 10 & Ручной & Успешно \\ 
+\hline 
+\end{tabular} 
+\end{table}
+Все тесты пройдены успешно.
+\subsection{Выводы}
+\hspace{\parindent}При выполнении задания были закреплены навыки в работе с основными конструкциями языка \texttt{C} и получен опыт в организации многофайлового проекта и создании модульных тестов.
+
+Данная задача также была переписана на языке \verb|C++| с использованием объектно-ориентироанного проектироания.
+\newpage
+\subsection{Листинги}
+\verb+c_sum_of_digits.h+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_sum_of_digits.h}
+\verb+c_sum_of_digits.c+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_sum_of_digits.c}
+\verb+c_sum_of_digits_ui.h+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_sum_of_digits_ui.h}
+\verb+c_sum_of_digits_ui.c+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_sum_of_digits_ui.c}
+
+
+
+
+\newpage
+%############################################################
+\section{Задание 1.2. Поиск кратных}
+\subsection{Задание}
+\hspace{\parindent}Заданы три целых числа a, b и c. Найти среди них пары чисел, в которых одно число делится на 
+
+другое.
+
+\subsection{Теоритические сведения}
+\hspace{\parindent}Были использованы стандартные функции ввода-вывода 
+\texttt{scanf}, \texttt{printf}, \texttt{puts} из стандартной библиотеки языка \verb+С+, 
+объявленные в заголовочном файле \textit{stdio.h}.
+
+При помощи оператоов ветвления \texttt{if-else} и \texttt{switch} реализовано интерактивное подменю для более удобного взаимодествия пользователя с программой.
+
+
+\subsection{Проектирование}
+\hspace{\parindent}В ходе проектирования было решено выделить 5 функций:
+\begin{enumerate}
+	\item Поиск кратных
+ 	
+ 	\verb+int c_calc_multiples(int*);+
+ 	
+	Параметром функции является массив из трёх чисел типа \verb+int+, которые вводит пользователь.
+	Возвращается число типа \verb+int+, которое является количеством кратных чисел.
+	Вывод производится прямо в этой функции.	 
+		 
+	\item Меню с начальным пользовательским взаимодействием
+	
+	\verb+void c_multiples_ui();+
+	
+	Пользователю предлагается выбрать консольный ввод, вызов справки, возварт к главное меню или завершение программы.
+	
+	\item Основное пользовательское взаимодействие
+	
+	\verb+void c_multiples_inp();+
+	
+	Пользователю предлагается последовательно ввести 3 числа, после чего вызывается функция для решения задачи и вывода результата в консоль.
+	
+	\item Решение задачи и вывода результата в консоль
+	
+	\verb+void c_multiples_solution(int*);+
+	
+	В качестве параметра передаётся массив из трёх чисел типа \verb+int+. Вызывается функция поиска. Результат выводится в консоль 
+
+	\item Вспомогательная информация
+	
+	\verb+void c_multiples_help();+
+	
+	Вывод справки в консоль.
+\end{enumerate}
+
+\subsection{Описание тестового стенда и методики тестирования}
+\hspace{\parindent}Среда разработки QtCreator 3.5.1, компилятор MinGW (x86 64 bit), операционная система Windows 10 64 bit.
+В процессе выполнения задания производилось ручное тестирование.
+Модульное тестирование реализовано при помощи фреймворка QtTest.
+
+\subsection{Тестирование}
+\begin{table}[h]
+\caption{Тестирование нахождения кратных}
+\label{multiples_test}
+\begin{tabular}{| c c c | c | c | c |}
+\hline 
+m1 & m2 & m3 & Количество пар кратных & Тип теста & Результат \\ 
+\hline 
+2 & 4 & 8 & 3 & Модульный & Успешно \\ 
+\hline 
+8 & 4 & 2 & 3 & Ручной & Успешно \\ 
+\hline 
+\end{tabular} 
+\end{table}
+Все тесты пройдены успешно.
+
+\subsection{Выводы}
+\hspace{\parindent}При выполнении задания закреплены навыки в работе с основными конструкциями языка \verb+C+ и получен опыт в организации многофайлового проекта и создании модульных тестов.
+
+Данная задача также была переписана на языке \verb|C++| с использованием объектно-ориентироанного проектироания.
+\newpage
+\subsection{Листинги}
+\verb+c_multiples.h+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_multiples.h}
+
+\verb+c_multiples_ui.h+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_multiples_ui.h}
+\verb+c_multiples_ui.c+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_multiples_ui.c}
+
+
+
+
+\newpage
+%############################################################
+chapter{Циклы}
+\section{Задание 2. Обратная запись числа}
+\subsection{Задание}
+
+\hspace{\parindent}Записать число наоборот.
+
+\subsection{Теоретические сведения}
+\hspace{\parindent}Были использованы стандартные функции ввода-вывода \texttt{scanf}, \texttt{printf}, \texttt{puts} из стандартной библиотеки языка \verb+С+, объявленные в заголовочном файле \textit{stdio.h}.
+
+При помощи оператоов ветвления \texttt{if-else} и \texttt{switch} реализовано интерактивное подменю для более удобного взаимодествия пользователя с программой.
+
+\subsection{Проектирование}
+\hspace{\parindent}В ходе проектирования было решено выделить 5 функций:
+\begin{enumerate}
+ 	\item Вычисление суммы
+ 	
+ 	\verb+int c_calc_reversed_num(int);+
+ 	
+	Параметром функции является число типа \verb+int+, которое вводит пользователь.
+	Возвращается число типа \verb+int+, которое и является обратной записью.	 
+		 
+		 
+	\item Меню с первоначальным пользовательским взаимодействием
+	
+	\verb+void c_reversed_num_ui();+
+	
+	Пользователю предлагается выбрать консольный ввод, вызов справки, возварт к главное меню или завершение программы.	
+		 
+		 
+	\item Основное пользовательское взаимодействие
+	
+	\verb+void c_reversed_num_inp();+
+
+	Пользователю предлагается ввести число, после чего вызывается функция для решения задачи и вывода результата в консоль.
+	
+	
+	\item Решение задачи и вывода результата в консоль
+	
+	\verb+void c_reversed_num_solution(int);+
+
+	В качестве параметра передаётся число типа \verb+int+. Вызывается функция вычисления обратного числа. Результат выводится в консоль.	
+	
+	 
+	\item Вспомогательная информация
+	
+	\verb+void c_reversed_num_help();+
+	
+	Вывод справки в консоль.
+\end{enumerate}
+
+\subsection{Описание тестового стенда и методики тестирования}
+\hspace{\parindent}Среда разработки QtCreator 3.5.1, компилятор MinGW (x86 64 bit), операционная система Windows 10 64 bit.
+В процессе выполнения задания производилось ручное тестирование.
+Модульное тестирование реализовано при помощи фреймворка QtTest.
+
+\subsection{Тестирование}
+\begin{table}[h]
+\caption{Тестирование обратного числа}
+\label{sum_of_digits_test}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Введённое число & Обратное число & Тип теста & Результат \\ 
+\hline 
+1234 & 4321 & Модульный & Успешно \\ 
+\hline 
+4321 & 1234 & Ручной & Успешно \\ 
+\hline 
+\end{tabular} 
+\end{table}
+
+Все тесты пройдены успешно.
+\subsection{Выводы}
+\hspace{\parindent}При выполнении задания были закреплены навыки в работе с основными конструкциями языка \texttt{C} и получен опыт в организации многофайлового проекта и создании модульных тестов.
+
+Данная задача также была переписана на языке \verb|C++| с использованием объектно-ориентироанного проектироания.
+\newpage
+\subsection{Листинги}
+\verb+c_reversed_num.h+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_reversed_num.h}
+\verb+c_reversed_num.c+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_reversed_num.c}
+\verb+c_reversed_num_ui.h+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_reversed_num_ui.h}
+\verb+c_reversed_num_ui.c+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_reversed_num_ui.c}
+
+
+\newpage
+%############################################################
+\chapter{Массивы}
+\section{Задание 3. Поворот матрицы}
+\subsection{Задание}
+
+\hspace{\parindent}Содержимое квадратной матрицы A(n,n) повернуть на 90 градусов по часовой
+
+стрелке вокруг центра матрицы.
+\subsection{Теоретические сведения}
+\hspace{\parindent}\hspace{\parindent}Были использованы стандартные функции ввода-вывода \texttt{scanf}, \texttt{printf}, \texttt{puts}, \texttt{fopen}, \texttt{fclose}, \texttt{fscanf}, \texttt{fprintf} из стандартной библиотеки языка \verb+С+, объявленные в заголовочном файле \textit{stdio.h}.
+
+При помощи оператоов ветвления \texttt{if-else} и \texttt{switch} реализовано интерактивное подменю для более удобного взаимодествия пользователя с программой.
+
+Так же использовались функции для работы с памятью \verb+malloc+ и \verb+free+, объявленные в заголовочном файле \textit{stdlib.h}.
+
+\subsection{Проектирование}
+\hspace{\parindent}В ходе проектирования было решено выделить 7 основных функций:
+\begin{enumerate}
+ 	\item Поворот
+ 	
+ 	\verb+void c_calc_matrix_turn(int size_of_matrix, int **matrix)+
+ 	
+	Параметрами функции являются: число типа \verb+int+, которое вводит пользователь(размер квадратной матрицы) и двумерный массив типа \verb+int**+(квадратная матрица).
+		 
+		 
+	\item Меню с первоначальным пользовательским взаимодействием
+	
+	\verb+void c_matrix_turn_ui();+
+	
+	Пользователю предлагается выбрать консольный ввод, файловый ввод, вызов справки, возварт к главное меню или завершение программы. 	 
+		 
+	\item Консольное взаимодействие с пользователем
+	
+	\verb+void c_matrix_turn_cinp();+
+
+	Пользователю предлагается ввести размер матрицы и саму матрицу, после чего вызывается функция для решения задачи и вывода результата в консоль.
+	
+	\item Файловое взаимодействие с пользователем
+	
+	\verb+void c_matrix_turn_finp();+
+
+	Пользователю предлагается ввести имя файла, откуда программа должна получить исходные данные, после чего вызывается функция для решения задачи и вывода результата в файл.
+	
+	\item Решение задачи и вывода результата в консоль
+	
+	\verb+void c_matrix_turn_csolution(int, int**);+
+
+	Параметрами функции являются: число типа \verb+int+, которое вводит пользователь(размер квадратной матрицы) и двумерный массив типа \verb+int**+(квадратная матрица). Вывод производится в консоль.
+	
+	\item Решение задачи и вывода результата в файл
+	
+	\verb+void c_matrix_turn_fsolution(int, int**);+
+
+	Параметрами функции являются: число типа \verb+int+, которое вводит пользователь(размер квадратной матрицы) и двумерный массив типа \verb+int**+(квадратная матрица). Вывод производится в указанный файл результата.
+	
+	
+	\item Вспомогательная информация
+	
+	\verb+void c_matrix_turn_help();+
+	
+	Вывод справки в консоль.
+\end{enumerate}
+
+\subsection{Описание тестового стенда и методики тестирования}
+\hspace{\parindent}Среда разработки QtCreator 3.5.1, компилятор MinGW (x86 64 bit), операционная система Windows 10 64 bit.
+В процессе выполнения задания производилось ручное тестирование.
+Модульное тестирование реализовано при помощи фреймворка QtTest.
+
+Все тесты пройдены успешно.
+\subsection{Выводы}
+\hspace{\parindent}При выполнении задания были закреплены навыки в работе с массивами и получен опыт в организации многофайлового проекта и создании модульных тестов.
+
+Данная задача также была переписана на языке \verb|C++| с использованием объектно-ориентироанного проектироания.
+
+\newpage
+\subsection{Листинги}
+\verb+c_matrix_turn.h+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_matrix_turn.h}
+\verb+c_matrix_turn.c+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_matrix_turn.c}
+\verb+c_matrix_turn_ui.h+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_matrix_turn_ui.h}
+\verb+c_matrix_turn_ui.c+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_matrix_turn_ui.c}
+
+
+
+
+\newpage
+%############################################################
+\chapter{Строки}
+\section{Задание 4. Поиск ключей}
+\subsection{Задание}
+
+\hspace{\parindent}В заданном тексте подсчитать частоту использования каждого буквосочетания, слова и 
+
+словосочетания из заданного списка..
+
+\subsection{Теоретические сведения}
+\hspace{\parindent}\hspace{\parindent}Были использованы стандартные функции ввода-вывода \texttt{scanf}, \texttt{printf}, \texttt{puts}, \texttt{fopen}, \texttt{fclose}, \texttt{fscanf}, \texttt{fprintf} из стандартной библиотеки языка \verb+С+, объявленные в заголовочном файле \textit{stdio.h}.
+
+При помощи оператоов ветвления \texttt{if-else} и \texttt{switch} реализовано интерактивное подменю для более удобного взаимодествия пользователя с программой.
+
+Для поиска ключей использовалась функция \verb+strstr+.
+
+Так же использовались функции для работы с памятью \verb+malloc+ и \verb+free+, объявленные в заголовочном файле \textit{stdlib.h}.
+
+\subsection{Проектирование}
+\hspace{\parindent}В ходе проектирования было решено выделить 7 основных функций:
+\begin{enumerate}
+ 	\item Поиск ключей
+ 	
+ 	\verb+void c_calc_keys_in_text(char**, char**, int, int, int*);+
+ 	
+	Параметрами функции являются: 2 массива строк типа \verb+char**+(текст и ключевые слова), 2 числа типа \verb+int+(количество строк и ключей соответственно) и одномерный массив типа \verb+int*+(количество вхождений).
+		 
+		 
+	\item Меню с первоначальным пользовательским взаимодействием
+	
+	\verb+void c_keys_in_text_ui();+
+	
+	Пользователю предлагается выбрать консольный ввод, файловый ввод, вызов справки, возварт к главное меню или завершение программы. 	 
+		 
+	\item Консольное взаимодействие с пользователем
+	
+	\verb+void c_keys_in_text_cinp();+
+
+	Пользователю предлагается ввести текст и ключевые слова, после чего вызывается функция для решения задачи и вывода результата в консоль.
+	
+	\item Файловое взаимодействие с пользователем
+	
+	\verb+void c_keys_in_text_finp();+
+
+	Пользователю предлагается ввести имя файла, откуда программа должна получить исходные данные, после чего вызывается функция для решения задачи и вывода результата в файл.
+	
+	\item Решение задачи и вывода результата в консоль
+	
+	\verb+void c_keys_in_text_csolution(char**, char**, int, int);+
+
+	Параметрами функции являются: 2 массива строк типа \verb+char**+(текст и ключевые слова), 2 числа типа \verb+int+(количество строк и ключей соответственно). Вывод производится в консоль.
+	
+	\item Решение задачи и вывода результата в файл
+	
+	\verb+void c_keys_in_text_fsolution(char**, char**, int, int);+
+
+	Параметрами функции являются: 2 массива строк типа \verb+char**+(текст и ключевые слова), 2 числа типа \verb+int+(количество строк и ключей соответственно). Вывод производится в указанный файл результата.
+	
+	
+	\item Вспомогательная информация
+	
+	\verb+void c_keys_in_text_help();+
+	
+	Вывод справки в консоль.
+\end{enumerate}
+
+\subsection{Описание тестового стенда и методики тестирования}
+\hspace{\parindent}Среда разработки QtCreator 3.5.1, компилятор MinGW (x86 64 bit), операционная система Windows 10 64 bit.
+В процессе выполнения задания производилось ручное тестирование.
+Модульное тестирование реализовано при помощи фреймворка QtTest.
+
+Все тесты пройдены успешно.
+\subsection{Выводы}
+\hspace{\parindent}При выполнении задания были закреплены навыки в работе со строками и получен опыт в организации многофайлового проекта и создании модульных тестов.
+
+Данная задача также была переписана на языке \verb|C++| с использованием объектно-ориентироанного проектироания.
+
+\newpage
+\subsection{Листинги}
+\verb+c_keys_in_text.h+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_keys_in_text.h}
+\verb+c_keys_in_text.c+
+\lstinputlisting[]
+{../sources/SDP/cCalculations/c_keys_in_text.c}
+\verb+c_keys_in_text_ui.h+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_keys_in_text_ui.h}
+\verb+c_keys_in_text_ui.c+
+\lstinputlisting[]
+{../sources/SDP/cMenu/c_keys_in_text_ui.c}
+
+
+
+
+
+\newpage
+%############################################################
+\chapter{Инкапсуляция}
+\section{Задание 5. БОЛЬШОЕ ЦЕЛОЕ ЧИСЛО}
+\subsection{Задание}
+
+\hspace{\parindent}Реализовать класс БОЛЬШОЕ ЦЕЛОЕ ЧИСЛО (максимальное значение неограничено). Требуемые 
+
+методы: конструктор, деструктор, копирование, сложение, вычитание, умножение, преобразование к 
+
+типу int. 
+
+\subsection{Теоретические сведения}
+\hspace{\parindent}Для реализации данной задачи были использованы библиотечные потоки ввода-вывода \verb+STL+, такие как \verb+cin+ и \verb+cout+, объявленные в заголовочном файле \textit{iostream}.
+
+При помощи цикла \verb+for+ и происходит иттерирование по массиву. Работа с памятью происходит при помощи операторов \verb+new+ и \verb+delete+.
+
+Для создания данного класса использован \verb+vector+, т.к. количество разрядов бцч не ограничено. Все действия выполнялись порахрядно, наподобии вычисления в столбик.
+
+\subsection{Проектирование}
+\hspace{\parindent}В ходе проектирования было решено выделить класс \verb+cpp_int_unlim+ 
+для представления бцч и класс \verb+cpp_int_unlim_inp+, занимающийся вводом и выводом бцч в консоль.
+
+Класс \verb+cpp_int_unlim+ было решено спроектировать следующим образом: 
+\begin{enumerate}
+ 	\item Поле, содержащие бцч и результаты вычислений
+ 	
+ 	\verb+vector<int> num1;+
+    \verb+vector<int> num2;+
+    \verb+vector<int> min_num;+
+    \verb+vector<int> max_num;+
+    \verb+vector<int> sum;+
+    \verb+vector<int> subt;+
+    \verb+vector<int> mult;+
+    \verb+int num1_to_i;+
+    \verb+int num2_to_i;+
+		 
+	\item Поле, содержащее промежуточные вычисления
+	
+	\verb+int size_of_num1;+
+    \verb+int size_of_num2;+
+    \verb+int size_of_min;+
+    \verb+int size_of_max;+
+    \verb+int size_of_result;+
+    
+    \item Поле, содержащее вспомогательные переменные
+	
+	\verb+int trigger;+
+    \verb+int test;+
+		 
+	\item Конструкторы
+	
+	\verb+cpp_int_unlim();+
+
+	Конструктор по умолчанию.
+	
+	\verb+Array(Array &);+
+	
+	Конструктор. Пользователь вводит два бцч.
+	
+	\verb+cpp_int_unlim(vector<int>, vector<int>);+
+
+	Конструктор копирования инициализирует создаваемый объект с помощью другого объекта этого класса.
+	
+	\verb+cpp_int_unlim(const cpp_int_unlim& obj);+
+	
+	\item Отдельный метод для ввода бцч
+	
+	\verb+void enter_numbers(vector<int>, vector<int>);+
+	
+	\item Метод, для промежуточных вычислений(размер каждого числа, какое больше, а какое меньше и т.д.).
+	
+	\verb+void basic_calculations();+
+	
+	Вызов обязателен для *, -, +.
+	
+	\item Метод для сложения
+	
+	\verb+void sum_of_iu();+
+	
+	\item Метод для вычитания
+	
+	\verb+void subtraction_of_iu();+
+	
+	\item Метод для умножения
+	
+	\verb+void multiplication_of_iu();+
+	
+	\item Метод для перевода в int
+	
+	\verb+void iu_to_i();+
+	
+	\item Методы для вывода
+	
+	\verb+void get_...();+
+	
+	\item Деструктор	
+	
+	\verb+~cpp_int_unlim();+
+	
+	В деструкторе происходит удалание выделенной памяти под хранение векторов с помощью \verb+.clear();+.
+	
+\end{enumerate}
+
+Класс \verb+cpp_int_unlim_inp+ было решено спроектировать следующим образом: 
+\begin{enumerate}
+ 	\item Поле, содержащее объект класса \verb+Array+
+ 	
+ 	\verb+cpp_int_unlim iu;+
+ 	
+	\item Конструктор
+	
+	\verb+cpp_int_unlim_inp();+
+
+	\item Метод, осуществляющий ввод бцч
+	
+	\verb+void cpp_iu_inp();+
+	
+	\item Деструктор	
+	
+	\verb+~~cpp_int_unlim_inp();+
+	
+\end{enumerate}
+
+\subsection{Тестирование}
+\begin{table}[h]
+\caption{Тестирование обратного числа}
+\label{sum_of_digits_test}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline 
+Действие & Введённое число1 & Введённое число2 & Результат & Тип теста & Результат \\ 
+\hline 
+Сложение & 654321 & 123456 & 777777 & Модульный & Успешно \\ 
+\hline 
+Вычитание & 654321 & 123456 & 530865 & Модульный & Успешно \\ 
+\hline 
+Умножение & 4321 & 1234 & 5332114 & Модульный & Успешно \\ 
+\hline 
+\end{tabular} 
+\end{table}
+Все тесты пройдены успешно.
+\subsection{Выводы}
+\hspace{\parindent}При выполнении задания были усвоены навыки проектирования и создания классов и получен опыт в организации многофайлового проекта.
+
+\newpage
+\subsection{Листинги}
+\verb+cpp_int_unlim.h+
+\lstinputlisting[]
+{../sources/SDP/cppCalculations/cpp_int_unlim.h}
+\verb+cpp_int_unlim.cpp+
+\lstinputlisting[]
+{../sources/SDP/cppCalculations/cpp_int_unlim.cpp}
+\verb+cpp_int_unlim_inp.h+
+\lstinputlisting[]
+{../sources/SDP/cppMenu/cpp_int_unlim_inp.h}
+\verb+cpp_int_unlim_inp.cpp+
+\lstinputlisting[]
+{../sources/SDP/cppMenu/cpp_int_unlim_inp.cpp}
+
+\chapter*{Приложения}
+\subsection*{Листинги модульных тестов к заданиям с 1 по 4 включительно}
+\lstinputlisting[label=unit_tests_1_4]
+{../sources/SDP/cTests/tst_cteststest.cpp}
+\newpage
+
+\subsection*{Листинги класса $cpp_sum_of_digits$}
+\lstinputlisting[label=class_cpp_sum_of_digits]
+{../sources/SDP/cppCalculations/cpp_sum_of_digits.h}
+\lstinputlisting[label=class_cpp_sum_of_digits]
+{../sources/SDP/cppCalculations/cpp_sum_of_digits.cpp}
+\newpage
+
+\subsection*{Листинги класса $cpp_multiples$}
+\lstinputlisting[]
+{../sources/SDP/cppCalculations/cpp_multiples.h}
+
+\newpage
+
+\subsection*{Листинги класса $cpp_reversed_num$}
+\lstinputlisting[label=class_cpp_reversed_num]
+{../sources/SDP/cppCalculations/cpp_reversed_num.h}
+\lstinputlisting[label=class_cpp_reversed_num]
+{../sources/SDP/cppCalculations/cpp_reversed_num.cpp}
+\newpage
+
+\subsection*{Листинги класса $cpp_matrix_turn$}
+\lstinputlisting[label=class_cpp_matrix_turn]
+{../sources/SDP/cppCalculations/cpp_matrix_turn.h}
+\lstinputlisting[label=class_cpp_matrix_turn]
+{../sources/SDP/cppCalculations/cpp_matrix_turn.cpp}
+\newpage
+
+\subsection*{Листинги класса $cpp_keys_in_text$}
+\lstinputlisting[label=class_cpp_keys_in_text]
+{../sources/SDP/cppCalculations/cpp_keys_in_text.h}
+\lstinputlisting[label=class_cpp_keys_in_text]
+{../sources/SDP/cppCalculations/cpp_keys_in_text.cpp}
+\newpage
+
+\subsection*{Листинги модульных тестов к заданиям с 1 по 4 включительно на языке C++}
+\lstinputlisting[label=arrayappdemo]
+{../sources/SDP/cpptests/tst_cppteststest.cpp}
+\newpage
+
+\end{document}

@@ -269,7 +269,7 @@ void cpp_int_unlim::iu_to_i()
     {
         trigger++;
         num1_to_i=num1_to_i*10+num1[i];
-        if(i>=10)
+        if(i>=5)
         {
             trigger=2;
             break;
@@ -279,7 +279,7 @@ void cpp_int_unlim::iu_to_i()
     for (unsigned int i=0; i<num2.size(); i++)
     {
         num2_to_i=num2_to_i*10+num2[i];
-        if(i>=10)
+        if(i>=5)
         {
             trigger=3;
             break;

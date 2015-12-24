@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
         if (strcmp(argv[1], "--sum") == 0 || strcmp(argv[1], "-s") == 0)
         {
             if (argc == 3)
-                cl_keys_in_text(argv);
+                cl_sum_of_digits(argv);
             else
             {
                 puts("Incorrect number of parameters.");

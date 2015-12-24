@@ -1,5 +1,5 @@
-#ifndef CPP_MULTIPLES
-#define CPP_MULTIPLES
+#ifndef CPP_MULTIPLES_SEARCH
+#define CPP_MULTIPLES_SEARCH
 
 #include <iostream>
 
@@ -19,5 +19,5 @@ public:
     int get_amount();
 };
 
-#endif // CPP_MULTIPLES
+#endif // CPP_MULTIPLES_SEARCH
 

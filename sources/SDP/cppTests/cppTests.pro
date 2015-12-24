@@ -18,6 +18,7 @@ TEMPLATE = app
 SOURCES += tst_cppteststest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
+
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../cppCalculations/release/ -lcppCalculations
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../cppCalculations/debug/ -lcppCalculations
 else:unix: LIBS += -L$$OUT_PWD/../cppCalculations/ -lcppCalculations

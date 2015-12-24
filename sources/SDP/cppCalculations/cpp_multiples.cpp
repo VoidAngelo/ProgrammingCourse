@@ -1,4 +1,5 @@
 #include "cpp_multiples.h"
+#include "cpp_exceptions.h"
 
 cpp_multiples::cpp_multiples()
 {
@@ -16,6 +17,10 @@ void cpp_multiples::enter_numbers(int *number)
     for (int i=0; i<3; i++)
     {
         numbers[i]=number[i];
+        if (numbers[i]>999)
+        {
+            throw OutOfRange(*numbers);
+        }
     }
 }
 

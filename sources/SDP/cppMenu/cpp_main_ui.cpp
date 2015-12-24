@@ -5,8 +5,8 @@ void ui()
     int way;
     cout <<"Choose a task:" <<endl;
     cout <<"1. Summ of digits." <<endl;
-    //cout <<"2. Search for multiples." <<endl;
-    //cout <<"3. Reversion of given number." <<endl;
+    cout <<"2. Search for multiples." <<endl;
+    cout <<"3. Reversion of given number." <<endl;
     //cout <<"4. Matrix turn.";
     //cout <<"5. Search of text constructs." <<endl;
     cout <<"6. Unlimited integers." <<endl;
@@ -31,20 +31,28 @@ void ui()
             case 1:
             {
                 system("cls");
-                cpp_sum_of_digits_inp inp;
-                inp.cpp_number_inp();
+                cpp_sum_of_digits_inp inp1;
+                inp1.cpp_number_inp();
                 ui();
                 break;
             }
-            /*case 2:
+            case 2:
+            {
                 system("cls");
-                c_multiples_ui();
+                cpp_multiples_inp inp2;
+                inp2.cpp_numbers_inp();
+                ui();
                 break;
+            }
             case 3:
+            {
                 system("cls");
-                c_reversed_num_ui();
+                cpp_reversed_num_inp inp3;
+                inp3.cpp_number_inp();
+                ui();
                 break;
-            case 4:
+            }
+            /*case 4:
                 system("cls");
                 c_matrix_turn_ui();
                 break;
@@ -55,8 +63,8 @@ void ui()
             case 6:
             {
                 system("cls");
-                cpp_int_unlim_inp inp;
-                inp.cpp_iu_inp();
+                cpp_int_unlim_inp inp6;
+                inp6.cpp_iu_inp();
                 ui();
                 break;
             }

@@ -12,11 +12,11 @@ cpp_sum_of_digits_inp::~cpp_sum_of_digits_inp()
 
 void cpp_sum_of_digits_inp::cpp_number_inp()
 {
-    int num_t1;
+    int num;
     cout<<"Type your number: ";
-    cin>>num_t1;
+    cin>>num;
 
-    sum.enter_number(num_t1);
+    sum.enter_number(num);
     sum.sum_of_digits();
     sum.get_sum();
 

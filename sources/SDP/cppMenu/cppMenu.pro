@@ -7,13 +7,16 @@ SOURCES += \
     cpp_main_ui.cpp \
     cpp_main.cpp \
     cpp_int_unlim_inp.cpp \
-    cpp_sum_of_digits_inp.cpp
+    cpp_sum_of_digits_inp.cpp \
+    cpp_reversed_num_inp.cpp \
+    cpp_multiples_inp.cpp
 
 HEADERS += \
     cpp_main.h \
     cpp_int_unlim_inp.h \
-    cpp_sum_of_digits_inp.h
-
+    cpp_sum_of_digits_inp.h \
+    cpp_reversed_num_inp.h \
+    cpp_multiples_inp.h
 
 
 

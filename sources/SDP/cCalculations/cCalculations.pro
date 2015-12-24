@@ -14,8 +14,8 @@ SOURCES += \
     c_matrix_turn.c \
     c_reversed_num.c \
     c_sum_of_digits.c \
-    c_multiples.c \
-    c_keys_in_text.c
+    c_keys_in_text.c \
+    c_multiples.c
 
 HEADERS += \
     c_matrix_turn.h \

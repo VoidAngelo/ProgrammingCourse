@@ -3,10 +3,21 @@
 
 #include "cpp_int_unlim.h"
 //#include "cpp_keys_in_text.h"
-//#include "cpp_matrix_turn.h"
+#include "cpp_matrix_turn.h"
 #include "cpp_multiples.h"
 #include "cpp_reversed_num.h"
 #include "cpp_sum_of_digits.h"
+
+int compare_matrix(int **matrix, int **matrix_r, int square)
+{
+    for (int i=0; i<square; i++)
+        for (int j=0; j<square; j++)
+        {
+            if (matrix[i][j]!=matrix_r[i][j])
+            return 1;
+        }
+    return 0;
+}
 
 class CppTestsTest : public QObject
 {
@@ -19,6 +30,7 @@ private Q_SLOTS:
     void test_sum_of_digits();
     void test_reversed_num();
     void test_multiples();
+    void test_matrix_turn();
     void test_iu_sum();
     void test_iu_subt();
     void test_iu_mult();
@@ -54,6 +66,43 @@ void CppTestsTest::test_multiples()
     num.enter_numbers(numbers);
     num.find_multiples();
     QCOMPARE(num.get_amount(), 3);
+}
+
+void CppTestsTest::test_matrix_turn()
+{
+    int size_of_matrix=3, k;
+    int **matrix = new int* [size_of_matrix];
+    for (int i = 0; i < size_of_matrix; i++)
+        matrix[i] = new int [size_of_matrix];
+
+    for(int i=0; i<size_of_matrix; i++)
+        for(int j=0; j<size_of_matrix; j++)
+        {
+            k++;
+            matrix[i][j]=k;
+        }
+
+    int **matrix_r = new int* [size_of_matrix];
+    for (int i = 0; i < size_of_matrix; i++)
+        matrix_r[i] = new int [size_of_matrix];
+    k=0;
+    for(int i=0; i<size_of_matrix; i++)
+        for(int j=0; j<size_of_matrix; j++)
+        {
+            k++;
+            matrix_r[i][j]=k+size_of_matrix*2-4*j-2*i;
+        }
+    cpp_matrix_turn matr;
+    matr.enter_matrix(size_of_matrix, matrix);
+    matr.turn_matrix();
+    for(int i=0; i<size_of_matrix; i++)
+        for(int j=0; j<size_of_matrix; j++)
+        {
+            matrix[i][j]=matr.matrix_turned[i][j];
+        }
+    QCOMPARE(compare_matrix(matrix, matrix_r, size_of_matrix), 0);
+    delete[] matrix;
+    delete[] matrix_r;
 }
 
 void CppTestsTest::test_iu_sum()
