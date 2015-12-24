@@ -2,8 +2,8 @@
 
 cpp_int_unlim::cpp_int_unlim()
 {
-    //num1;
-    //num2;
+    num1.push_back(0);
+    num2.push_back(0);
 }
 
 cpp_int_unlim::cpp_int_unlim(vector<int> iu_num1, vector<int> iu_num2)

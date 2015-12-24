@@ -55,9 +55,9 @@ void CTestsTest::c_test_sum_of_digits()
 void CTestsTest::c_test_search_multiples()
 {
     int numbers[3];
-    numbers[1]=2;
-    numbers[2]=4;
-    numbers[3]=8;
+    numbers[0]=2;
+    numbers[1]=4;
+    numbers[2]=8;
     QCOMPARE(c_calc_multiples(numbers), 3);
 }
 
