@@ -66,7 +66,6 @@ UnlimitedInt & UnlimitedInt::operator=(UnlimitedInt &num2)
     {
         num[i] = num2.num[i];
     }
-
     return *this;
 }
 
