@@ -11,21 +11,21 @@ TEMPLATE = lib
 CONFIG += staticlib
 
 SOURCES += \
-    cpp_int_unlim.cpp \
-    cpp_sum_of_digits.cpp \
-    cpp_reversed_num.cpp \
-    cpp_keys_in_text.cpp \
-    cpp_matrix_turn.cpp \
-    cpp_multiples.cpp
+    KeysInText.cpp \
+    MatrixTurn.cpp \
+    UnlimitedInt.cpp \
+    SumOfDigits.cpp \
+    ReversedNum.cpp \
+    Multiples.cpp
 
 HEADERS += \
-    cpp_int_unlim.h \
-    cpp_sum_of_digits.h \
-    cpp_reversed_num.h \
-    cpp_keys_in_text.h \
-    cpp_matrix_turn.h \
-    cpp_exceptions.h \
-    cpp_multiples.h
+    UnlimitedInt.h \
+    MatrixTurn.h \
+    Multiples.h \
+    ReversedNum.h \
+    SumOfDigits.h \
+    Exceptions.h \
+    KeysInText.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

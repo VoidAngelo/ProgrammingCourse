@@ -1,12 +1,12 @@
 #include <QString>
 #include <QtTest>
 
-#include "cpp_int_unlim.h"
+#include "UnlimitedInt.h"
 //#include "cpp_keys_in_text.h"
-#include "cpp_matrix_turn.h"
-#include "cpp_multiples.h"
-#include "cpp_reversed_num.h"
-#include "cpp_sum_of_digits.h"
+#include "MatrixTurn.h"
+#include "Multiples.h"
+#include "ReversedNum.h"
+#include "SumOfDigits.h"
 
 int compare_matrix(int **matrix, int **matrix_r, int square)
 {
@@ -107,65 +107,17 @@ void CppTestsTest::test_matrix_turn()
 
 void CppTestsTest::test_iu_sum()
 {
-    vector<int> num1;
-    for(int i = 0; i < 6; i++)
-    {
-        num1.push_back(6-i);
-    }
 
-    vector<int> num2;
-    for(int i = 0; i < 6; i++)
-    {
-        num2.push_back(1+i);
-    }
-
-    cpp_int_unlim iu;
-    iu.enter_numbers(num1, num2);
-    iu.basic_calculations();
-    iu.sum_of_iu();
-    QCOMPARE(iu.get_sum(), 777777);
 }
 
 void CppTestsTest::test_iu_subt()
 {
-    vector<int> num1;
-    for(int i = 0; i < 6; i++)
-    {
-        num1.push_back(6-i);
-    }
 
-    vector<int> num2;
-    for(int i = 0; i < 6; i++)
-    {
-        num2.push_back(1+i);
-    }
-
-    cpp_int_unlim iu;
-    iu.enter_numbers(num1, num2);
-    iu.basic_calculations();
-    iu.subtraction_of_iu();
-    QCOMPARE(iu.get_subtraction(), 530865);
 }
 
 void CppTestsTest::test_iu_mult()
 {
-    vector<int> num1;
-    for(int i = 0; i < 4; i++)
-    {
-        num1.push_back(4-i);
-    }
 
-    vector<int> num2;
-    for(int i = 0; i < 4; i++)
-    {
-        num2.push_back(1+i);
-    }
-
-    cpp_int_unlim iu;
-    iu.enter_numbers(num1, num2);
-    iu.basic_calculations();
-    iu.multiplication_of_iu();
-    QCOMPARE(iu.get_multiplication(), 5332114);
 }
 
 QTEST_APPLESS_MAIN(CppTestsTest)

@@ -1,5 +1,5 @@
-#include "cpp_multiples.h"
-#include "cpp_exceptions.h"
+#include "Multiples.h"
+#include "Exceptions.h"
 
 cpp_multiples::cpp_multiples()
 {

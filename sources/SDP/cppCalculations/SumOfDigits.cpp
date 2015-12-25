@@ -1,4 +1,4 @@
-#include "cpp_sum_of_digits.h"
+#include "SumOfDigits.h"
 
 cpp_sum_of_digits::cpp_sum_of_digits()
 {

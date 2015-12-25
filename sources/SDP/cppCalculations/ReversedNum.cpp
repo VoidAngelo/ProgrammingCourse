@@ -1,4 +1,4 @@
-#include "cpp_reversed_num.h"
+#include "ReversedNum.h"
 
 cpp_reversed_num::cpp_reversed_num()
 {

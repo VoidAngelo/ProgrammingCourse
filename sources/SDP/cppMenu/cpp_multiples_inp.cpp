@@ -1,5 +1,5 @@
 #include "cpp_main.h"
-#include "cpp_exceptions.h"
+#include "Exceptions.h"
 
 cpp_multiples_inp::cpp_multiples_inp()
 {
@@ -13,7 +13,6 @@ cpp_multiples_inp::~cpp_multiples_inp()
 
 void cpp_multiples_inp::cpp_numbers_inp()
 {
-    int exp;
     int num[3];
     cout<<"Type your numbers: ";
     for (int i=0; i<3; i++)
