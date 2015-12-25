@@ -1,0 +1,25 @@
+#ifndef INT_UNLIM_UI_H
+#define INT_UNLIM_UI_H
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <string>
+
+
+using namespace std;
+
+class int_unlim_ui
+{
+private:
+    vector<int> num1;
+    vector<int> num2;
+
+public:
+    int_unlim(vector<int>, vector<int>);
+    void enter_numbers(vector<int>, vector<int>);
+    void get_numbers();
+};
+
+
+#endif // INT_UNLIM_UI_H

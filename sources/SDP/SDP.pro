@@ -3,5 +3,8 @@ TEMPLATE = subdirs
 SUBDIRS += \
     cMenu \
     cCalculations \
-    cTests
+    cTests \
+    cppMenu \
+    cppCalculations \
+    cppTests
 
