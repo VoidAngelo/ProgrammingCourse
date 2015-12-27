@@ -4,8 +4,8 @@ void UnlimitedIntDemo::demo()
 {
     inputNums();
     checkSum();
-    checkSubt();
-    checkMult();
+    //checkSubt();
+    //checkMult();
     checkToInt();
 }
 
@@ -42,28 +42,37 @@ void UnlimitedIntDemo::inputNums()
 
 void UnlimitedIntDemo::checkSum()
 {
+    UnlimitedInt sum(1);
     num1.showNum();
     cout<<"+";
     num2.showNum();
-    cout<<"="<<num1+num2;
+    cout<<"=";
+    sum=num1+num2;
+    sum.showNum();
     cout << endl;
 }
 
 void UnlimitedIntDemo::checkSubt()
 {
+    UnlimitedInt subt(1);
     num1.showNum();
     cout<<"-";
     num2.showNum();
-    cout<<"="<<num1+num2;
+    cout<<"=";
+    subt=num1-num2;
+    subt.showNum();
     cout << endl;
 }
 
 void UnlimitedIntDemo::checkMult()
 {
+    UnlimitedInt mult(1);
     num1.showNum();
     cout<<"*";
     num2.showNum();
-    cout<<"="<<num1*num2;
+    cout<<"=";
+    mult=num1*num2;
+    mult.showNum();
     cout << endl;
 }
 

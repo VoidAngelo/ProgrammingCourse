@@ -19,8 +19,14 @@ UnlimitedInt::UnlimitedInt(int size)
 
 UnlimitedInt::UnlimitedInt(const UnlimitedInt& obj)
 {
-    num=obj.num;
+    sizeOfNum = obj.getSize();
+    num = new int [sizeOfNum];
+    for (int i = 0; i < sizeOfNum; i++)
+    {
+        num[i] = obj.num[i];
+    }
 }
+
 
 UnlimitedInt::~UnlimitedInt()
 {
@@ -56,75 +62,59 @@ int & UnlimitedInt::operator[](int j)
     }
 
 UnlimitedInt & UnlimitedInt::operator=(UnlimitedInt &num2)
-{
+{    
     delete [] num;
-
-    sizeOfNum = num2.sizeOfNum;
-
+    sizeOfNum = num2.getSize();
     num = new int [sizeOfNum];
     for (int i = 0; i < sizeOfNum; i++)
+        num[i] = num2[i];
+    return *this;
+}
+
+UnlimitedInt & UnlimitedInt::operator+=(UnlimitedInt &num2)
+{
+    int sizeOfMin;
+    if(sizeOfNum<num2.sizeOfNum)
     {
-        num[i] = num2.num[i];
+        sizeOfMin=sizeOfNum;
+    }
+    else
+    {
+        sizeOfMin=num2.sizeOfNum;
+    }
+    for(int i = 0; i < sizeOfMin; i++)
+    {
+        num[sizeOfNum-1-i]+=num2[num2.sizeOfNum-1-i];
+    }
+
+    for(int i = sizeOfNum-1; i > 0; i--)
+    {
+        if(num[i]>=10)
+        {
+            int overflow=num[i]/10;
+            num[i]=num[i]%10;
+            num[i-1]=num[i-1]+overflow;
+        }
     }
     return *this;
 }
 
-int UnlimitedInt::operator+(UnlimitedInt &num2)
+UnlimitedInt operator+(UnlimitedInt &num1, UnlimitedInt &num2)
 {
-    int sizeOfMax;
-    int sizeOfMin;
-    if(sizeOfNum>num2.sizeOfNum)
-    {
-        sizeOfMax=sizeOfNum;
-        sizeOfMin=num2.sizeOfNum;
-    }
-    else
-    {
-        sizeOfMax=num2.sizeOfNum;
-        sizeOfMin=sizeOfNum;
-    }
-    UnlimitedInt sum(sizeOfMax);
-    UnlimitedInt min(sizeOfMin);
-    if(sizeOfNum>=num2.sizeOfNum)
-    {
-        sum.num=num;
-        min.num=num2.num;
-    }
-    else
-    {
-        sum.num=num2.num;
-        min.num=num;
-    }
-    for(int i = sizeOfMin-1; i >= 0; i--)
-    {
-        sum.num[i+sizeOfMax-sizeOfMin]=sum.num[i+sizeOfMax-sizeOfMin]-min.num[i];
-    }
-
-    for(int i = sum.sizeOfNum-1; i > 0; i--)
-    {
-        if(sum.num[i]>=10)
-        {
-            int overflow=sum.num[i]/10;
-            sum.num[i]=sum.num[i]%10;
-            sum.num[i-1]=sum.num[i-1]+overflow;
-        }
-    }
-    return *sum.num;
+    UnlimitedInt temp = num1;
+    return temp+=num2;
 }
 
-int UnlimitedInt::operator-(UnlimitedInt &num2)
+UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
 {
-    int sizeOfMax=sizeOfNum;
-    int sizeOfMin=num2.sizeOfNum;
+    int sizeOfMin;
     int trigger;
-    if(sizeOfNum>num2.sizeOfNum)
+    if(sizeOfNum<num2.sizeOfNum)
     {
         trigger=1;
     }
-    else if(sizeOfNum<num2.sizeOfNum)
+    else if(sizeOfNum>num2.sizeOfNum)
     {
-        sizeOfMax=num2.sizeOfNum;
-        sizeOfMin=sizeOfNum;
         trigger=2;
     }
     else
@@ -143,56 +133,56 @@ int UnlimitedInt::operator-(UnlimitedInt &num2)
         }
 
     }
-    UnlimitedInt subt(sizeOfMax);
-    UnlimitedInt min(sizeOfMin);
     if(trigger==1)
     {
-        subt.num=num;
-        min.num=num2.num;
+        sizeOfMin=sizeOfNum;
     }
     else
     {
-        subt.num=num2.num;
-        min.num=num;
+        sizeOfMin=num2.sizeOfNum;
     }
 
-    for(int i = sizeOfMin-1; i >= 0; i--)
+    for(int i = 0; i < sizeOfMin; i++)
     {
-        subt.num[i+sizeOfMax-sizeOfMin]=subt.num[i+sizeOfMax-sizeOfMin]-min.num[i];
+        num[sizeOfNum-1-i]-=num2[num2.sizeOfNum-1-i];
     }
 
-    for(int i = subt.sizeOfNum-1; i > 0; i--)
+    for(int i = sizeOfNum-1; i > 0; i--)
     {
-        if(subt.num[i]<0)
+        if(num[i]<0)
         {
-            subt.num[i]=subt.num[i]+10;
-            subt.num[i-1]--;
+            num[i]=num[i]+10;
+            num[i-1]--;
         }
     }
 
     if (trigger==3)
     {
-        subt.num[0]=~subt.num[0]+1;
+        num[0]=~num[0]+1;
     }
-    cout<<endl;
-    return *subt.num;
+    return *this;
 }
 
-int UnlimitedInt::operator*(UnlimitedInt &num2)
+UnlimitedInt operator-(UnlimitedInt &num1, UnlimitedInt &num2)
 {
-    int overflow;
-    int sizeOfResult=sizeOfNum+num2.sizeOfNum-1;
-    UnlimitedInt mult(sizeOfResult);
+    UnlimitedInt temp = num1;
+    return temp-=num2;
+}
+
+UnlimitedInt & UnlimitedInt::operator*=(UnlimitedInt &num2)
+{
+    int temp_size=sizeOfNum;
+    setSize(sizeOfNum+num2.sizeOfNum-1);
     int** mult_calc = new int* [num2.sizeOfNum];
         for (int i = 0; i < sizeOfNum; i++)
             mult_calc[i] = new int [sizeOfNum];
 
     int k=0;
-    int l=sizeOfResult-1;
+    int l=sizeOfNum-1;
     for(int i = num2.sizeOfNum-1; i >= 0; i--)
     {
-        l=sizeOfResult-1;
-        for(int j = sizeOfNum-1; j >= 0; j--)
+        l=sizeOfNum-1;
+        for(int j = temp_size; j >= 0; j--)
         {
             mult_calc[k][l-k] = num2.num[i]*num[j];
             l--;
@@ -202,37 +192,43 @@ int UnlimitedInt::operator*(UnlimitedInt &num2)
 
     for(int i = 0; i < num2.sizeOfNum; i++)
     {
-        for(int j = sizeOfResult-1; j > num2.sizeOfNum-1-i; j--)
+        for(int j = sizeOfNum-1; j > num2.sizeOfNum-1-i; j--)
         {
             if(mult_calc[i][j]>=10)
             {
-                overflow=mult_calc[i][j]/10;
+                int overflow=mult_calc[i][j]/10;
                 mult_calc[i][j]=mult_calc[i][j]%10;
                 mult_calc[i][j-1]=mult_calc[i][j-1]+overflow;
             }
         }
     }
 
-    for(int j = sizeOfResult-1; j >= 0; j--)
+    for(int j = sizeOfNum-1; j >= 0; j--)
     {
         int sum_temp=0;
         for(int i = 0; i < num2.sizeOfNum; i++)
         {
             sum_temp=sum_temp+mult_calc[i][j];
         }
-        mult.num[j]=sum_temp;
+        num[j]=sum_temp;
     }
 
-    for(int i = sizeOfResult-1; i > 0; i--)
+    for(int i = sizeOfNum-1; i > 0; i--)
     {
-        if(mult.num[i]>=10)
+        if(num[i]>=10)
         {
-            overflow=mult.num[i]/10;
-            mult.num[i]=mult.num[i]%10;
-            mult.num[i-1]=mult.num[i-1]+overflow;
+            int overflow=num[i]/10;
+            num[i]=num[i]%10;
+            num[i-1]=num[i-1]+overflow;
         }
     }
-    return *mult.num;
+    return *this;
+}
+
+UnlimitedInt operator*(UnlimitedInt &num1, UnlimitedInt &num2)
+{
+    UnlimitedInt temp = num1;
+    return temp-=num2;
 }
 
 int UnlimitedInt::toInt()

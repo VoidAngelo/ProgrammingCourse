@@ -107,17 +107,59 @@ void CppTestsTest::test_matrix_turn()
 
 void CppTestsTest::test_iu_sum()
 {
-
+    UnlimitedInt num1(5);
+    num1[0]=1;
+    num1[1]=2;
+    num1[2]=3;
+    num1[3]=4;
+    num1[4]=5;
+    UnlimitedInt num2(5);
+    num2[0]=6;
+    num2[1]=5;
+    num2[2]=4;
+    num2[3]=3;
+    num2[4]=2;
+    UnlimitedInt sum(1);
+    sum=num1+num2;
+    QCOMPARE(sum, 77777);
 }
 
 void CppTestsTest::test_iu_subt()
 {
-
+    UnlimitedInt num1(5);
+    num1[0]=1;
+    num1[1]=2;
+    num1[2]=3;
+    num1[3]=4;
+    num1[4]=5;
+    UnlimitedInt num2(5);
+    num2[0]=6;
+    num2[1]=5;
+    num2[2]=4;
+    num2[3]=3;
+    num2[4]=2;
+    UnlimitedInt subt(1);
+    subt=num1-num2;
+    QCOMPARE(subt, 77777);
 }
 
 void CppTestsTest::test_iu_mult()
 {
-
+    UnlimitedInt num1(5);
+    num1[0]=1;
+    num1[1]=2;
+    num1[2]=3;
+    num1[3]=4;
+    num1[4]=5;
+    UnlimitedInt num2(5);
+    num2[0]=6;
+    num2[1]=5;
+    num2[2]=4;
+    num2[3]=3;
+    num2[4]=2;
+    UnlimitedInt mult(1);
+    mult=num1*num2;
+    QCOMPARE(mult, 77777);
 }
 
 QTEST_APPLESS_MAIN(CppTestsTest)

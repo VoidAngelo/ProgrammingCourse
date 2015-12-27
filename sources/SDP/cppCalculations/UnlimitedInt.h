@@ -22,10 +22,15 @@ public:
     void setSize(int);
     UnlimitedInt & operator=(UnlimitedInt &);
     int &operator[](int);
-    int operator+(UnlimitedInt &);
-    int operator-(UnlimitedInt &);
-    int operator*(UnlimitedInt &);
+    UnlimitedInt & operator+=(UnlimitedInt &);
+    UnlimitedInt & operator-=(UnlimitedInt &);
+    UnlimitedInt & operator*=(UnlimitedInt &);
     int toInt();
+    void getResult(UnlimitedInt &obj);
 };
+
+UnlimitedInt operator+(UnlimitedInt &, UnlimitedInt &);
+UnlimitedInt operator-(UnlimitedInt &, UnlimitedInt &);
+UnlimitedInt operator*(UnlimitedInt &, UnlimitedInt &);
 
 #endif // INT_UNLIM_UI_H
