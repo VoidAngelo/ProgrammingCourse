@@ -1,50 +1,43 @@
 #include "Multiples.h"
 #include "Exceptions.h"
 
-cpp_multiples::cpp_multiples()
+Multiples::Multiples()
 {
-
+    numbers.push_back(5);
+    numbers.push_back(10);
+    numbers.push_back(11);
 }
 
-cpp_multiples::~cpp_multiples()
+Multiples::~Multiples()
 {
-
+    numbers.clear();
+    multiples.clear();
 }
 
-
-void cpp_multiples::enter_numbers(int *number)
+Multiples::Multiples(vector<int> &nums)
 {
-    for (int i=0; i<3; i++)
+    for (int i=0; i<nums.size(); i++)
     {
-        numbers[i]=number[i];
-        if (numbers[i]>999)
+        if (nums[i]>999)
         {
-            throw OutOfRange(*numbers);
+            throw OutOfRange(nums[i]);
+        }
+        else
+        {
+            numbers.push_back(nums[i]);
         }
     }
 }
 
-void cpp_multiples::find_multiples()
+vector<int> & Multiples::findMultiples()
 {
-    amount=0;
-    for (int i=0; i<3; i++)
-        for (int j=0; j<3; j++)
+    for (int i=0; i<numbers.size(); i++)
+        for (int j=0; j<numbers.size(); j++)
         {
             if(i!=j && numbers[i]%numbers[j]==0)
             {
-                amount++;
+                multiples.push_back(numbers[i]*1000+numbers[j]);
             }
         }
-}
-
-int cpp_multiples::get_amount()
-{
-    if (amount == 0)
-         cout<<"Таких чисел нет\n\n";
-    else
-    {
-        cout<<"Amount of multiples found: ";
-        cout<<amount<<endl;
-    }
-    return amount;
+    return multiples;
 }

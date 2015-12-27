@@ -2,22 +2,22 @@
 #define CPP_KEYS_IN_TEXT
 
 #include <iostream>
+#include <vector>
+#include <cstring>
+#include <string>
 
 using namespace std;
 
-class cpp_keys_in_text
+class KeysInText
 {
 private:
-    int num;
-    int sum;
+    vector<string> strings;
+    vector<int> result;
 
 public:
-    cpp_keys_in_text();
-    ~cpp_keys_in_text();
-    void enter_text();
-    void enter_keys();
-    void sum_of_digits();
-    int get_sum();
+    KeysInText(vector<string> &);
+    ~KeysInText();
+    vector<int> & findKeys(vector<string> &);
 };
 
 

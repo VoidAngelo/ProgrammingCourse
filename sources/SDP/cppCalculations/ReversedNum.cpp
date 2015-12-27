@@ -1,23 +1,18 @@
 #include "ReversedNum.h"
 
-cpp_reversed_num::cpp_reversed_num()
+ReversedNum::ReversedNum()
 {
-    //num
+    num=123;
 }
 
-cpp_reversed_num::~cpp_reversed_num()
-{
-
-}
-
-void cpp_reversed_num::enter_number(int number)
+ReversedNum::ReversedNum(int number)
 {
     num=number;
 }
 
-void cpp_reversed_num::reversion_of_num()
+int ReversedNum::Reversion()
 {
-    reversion=0;
+    int reversion=0;
     int temp=0;
     while(num!=0)
     {
@@ -25,11 +20,5 @@ void cpp_reversed_num::reversion_of_num()
         num=num/10;
         reversion=reversion*10+temp;
     }
-}
-
-int cpp_reversed_num::get_reversion()
-{
-    cout<<"Reversion of digits is: ";
-    cout<<reversion<<endl;
     return reversion;
 }

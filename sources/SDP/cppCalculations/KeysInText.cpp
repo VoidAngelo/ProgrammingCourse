@@ -1,42 +1,45 @@
-/*#include "cpp_keys_in_text.h"
+#include "KeysInText.h"
 
-cpp_keys_in_text::cpp_sum_of_digits()
+
+KeysInText::KeysInText(vector<string> &istrings)
 {
-
-}
-cpp_keys_in_text::~cpp_sum_of_digits()
-{
-
-}
-
-
-void cpp_keys_in_text::enter_number(int number)
-{
-    num=number;
-}
-void cpp_keys_in_text::c_calc_keys_in_text(char **strings, char **keys, int num_of_strings, int num_of_keys, int *result)
-{
-    int i, j, n;
-    char * match;
-    for (i=0; i<num_of_keys; i++)
+    for (int i=0; i<istrings.size(); i++)
     {
-        n=0;
-        for (j=0; j<num_of_strings; j++)
-        {
-            match = strstr (strings[j], keys[i]);
-            while (match != NULL)
-            {
-                match = strstr (match+1,keys[i]);
-                n++;
-            }
-        }
-        result[i]=n;
+        strings.push_back(istrings[i]);
     }
 }
 
-int cpp_keys_in_text::get_sum()
+KeysInText::~KeysInText()
 {
-    cout<<"Sum of digits is: ";
-    cout<<sum<<endl;
-    return sum;
-}*/
+
+}
+
+vector<int> & KeysInText::findKeys(vector<string> &keys)
+{
+    int n;
+    char * match;
+    for (int i=0; i<keys.size(); i++)
+    {
+        n=0;
+
+        char * ckey = new char [keys[i].length()+1];
+        strcpy (ckey, keys[i].c_str());
+
+        for (int j=0; j<strings.size(); j++)
+        {
+            char * cstring = new char [strings[j].length()+1];
+            strcpy (cstring, strings[j].c_str());
+
+            match = strstr (cstring, ckey);
+            while (match != NULL)
+            {
+                match = strstr (match+1,ckey);
+                n++;
+            }
+            delete[] cstring;
+        }
+        delete[] ckey;
+        result.push_back(n);
+    }
+    return result;
+}

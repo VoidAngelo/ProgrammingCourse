@@ -62,12 +62,20 @@ int & UnlimitedInt::operator[](int j)
     }
 
 UnlimitedInt & UnlimitedInt::operator=(UnlimitedInt &num2)
-{    
-    delete [] num;
-    sizeOfNum = num2.getSize();
-    num = new int [sizeOfNum];
-    for (int i = 0; i < sizeOfNum; i++)
-        num[i] = num2[i];
+{
+    if(this!= &num2)
+    {
+        delete [] num;
+
+        sizeOfNum = num2.sizeOfNum;
+
+        num = new int [sizeOfNum];
+        for (int i = 0; i < sizeOfNum; i++)
+        {
+            num[i] = num2.num[i];
+        }
+     }
+
     return *this;
 }
 
@@ -99,7 +107,7 @@ UnlimitedInt & UnlimitedInt::operator+=(UnlimitedInt &num2)
     return *this;
 }
 
-UnlimitedInt operator+(UnlimitedInt &num1, UnlimitedInt &num2)
+UnlimitedInt & operator+(UnlimitedInt &num1, UnlimitedInt &num2)
 {
     UnlimitedInt temp = num1;
     return temp+=num2;
@@ -158,12 +166,12 @@ UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
 
     if (trigger==3)
     {
-        num[0]=~num[0]+1;
+        num[0]*=-1;
     }
     return *this;
 }
 
-UnlimitedInt operator-(UnlimitedInt &num1, UnlimitedInt &num2)
+UnlimitedInt & operator-(UnlimitedInt &num1, UnlimitedInt &num2)
 {
     UnlimitedInt temp = num1;
     return temp-=num2;
@@ -213,6 +221,12 @@ UnlimitedInt & UnlimitedInt::operator*=(UnlimitedInt &num2)
         num[j]=sum_temp;
     }
 
+    for (int i=0; i<num2.sizeOfNum; i++)
+    {
+        delete [] mult_calc[i];
+    }
+    delete [] mult_calc;
+
     for(int i = sizeOfNum-1; i > 0; i--)
     {
         if(num[i]>=10)
@@ -222,10 +236,11 @@ UnlimitedInt & UnlimitedInt::operator*=(UnlimitedInt &num2)
             num[i-1]=num[i-1]+overflow;
         }
     }
+
     return *this;
 }
 
-UnlimitedInt operator*(UnlimitedInt &num1, UnlimitedInt &num2)
+UnlimitedInt & operator*(UnlimitedInt &num1, UnlimitedInt &num2)
 {
     UnlimitedInt temp = num1;
     return temp-=num2;

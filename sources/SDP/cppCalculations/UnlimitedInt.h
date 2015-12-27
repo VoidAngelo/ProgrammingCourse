@@ -26,11 +26,10 @@ public:
     UnlimitedInt & operator-=(UnlimitedInt &);
     UnlimitedInt & operator*=(UnlimitedInt &);
     int toInt();
-    void getResult(UnlimitedInt &obj);
 };
 
-UnlimitedInt operator+(UnlimitedInt &, UnlimitedInt &);
-UnlimitedInt operator-(UnlimitedInt &, UnlimitedInt &);
-UnlimitedInt operator*(UnlimitedInt &, UnlimitedInt &);
+UnlimitedInt & operator+(UnlimitedInt &, UnlimitedInt &);
+UnlimitedInt & operator-(UnlimitedInt &, UnlimitedInt &);
+UnlimitedInt & operator*(UnlimitedInt &, UnlimitedInt &);
 
 #endif // INT_UNLIM_UI_H

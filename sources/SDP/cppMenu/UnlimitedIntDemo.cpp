@@ -4,8 +4,8 @@ void UnlimitedIntDemo::demo()
 {
     inputNums();
     checkSum();
-    //checkSubt();
-    //checkMult();
+    checkSubt();
+    checkMult();
     checkToInt();
 }
 
@@ -25,7 +25,7 @@ void UnlimitedIntDemo::inputNums()
             num1[i]=n;
         }
     }
-    cout<< "Input 1st number"<< endl;
+    cout<< "Input 2nd number"<< endl;
     cin>>s2;
     int size2=s1.length();
     num2.setSize(size2);

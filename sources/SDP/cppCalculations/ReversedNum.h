@@ -5,18 +5,15 @@
 
 using namespace std;
 
-class cpp_reversed_num
+class ReversedNum
 {
 private:
     int num;
-    int reversion;
 
 public:
-    cpp_reversed_num();
-    ~cpp_reversed_num();
-    void enter_number(int);
-    void reversion_of_num();
-    int get_reversion();
+    ReversedNum();
+    ReversedNum(int);
+    int Reversion();
 };
 
 #endif // CPP_REVERSED_NUM

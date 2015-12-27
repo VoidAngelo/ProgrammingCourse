@@ -655,113 +655,69 @@ chapter{Циклы}
 Для создания данного класса использован \verb+vector+, т.к. количество разрядов бцч не ограничено. Все действия выполнялись порахрядно, наподобии вычисления в столбик.
 
 \subsection{Проектирование}
-\hspace{\parindent}В ходе проектирования было решено выделить класс \verb+cpp_int_unlim+ 
-для представления бцч и класс \verb+cpp_int_unlim_inp+, занимающийся вводом и выводом бцч в консоль.
+\hspace{\parindent}В ходе проектирования для представления бцч было решено выделить класс \verb+UnlimitedInt+ .
 
-Класс \verb+cpp_int_unlim+ было решено спроектировать следующим образом: 
+Класс \verb+UnlimitedInt+ было решено спроектировать следующим образом: 
 \begin{enumerate}
- 	\item Поле, содержащие бцч и результаты вычислений
+ 	\item Поле, содержащие бцч и его размер
  	
- 	\verb+vector<int> num1;+
-    \verb+vector<int> num2;+
-    \verb+vector<int> min_num;+
-    \verb+vector<int> max_num;+
-    \verb+vector<int> sum;+
-    \verb+vector<int> subt;+
-    \verb+vector<int> mult;+
-    \verb+int num1_to_i;+
-    \verb+int num2_to_i;+
+ 	\verb+vector<int> num;+
+    \verb+int sizeOfNum;+	
 		 
-	\item Поле, содержащее промежуточные вычисления
+	\item Конструкторы:
 	
-	\verb+int size_of_num1;+
-    \verb+int size_of_num2;+
-    \verb+int size_of_min;+
-    \verb+int size_of_max;+
-    \verb+int size_of_result;+
-    
-    \item Поле, содержащее вспомогательные переменные
-	
-	\verb+int trigger;+
-    \verb+int test;+
-		 
-	\item Конструкторы
-	
-	\verb+cpp_int_unlim();+
+	\verb+UnlimitedInt();+
 
 	Конструктор по умолчанию.
 	
-	\verb+Array(Array &);+
+	\verb+UnlimitedInt();+
 	
-	Конструктор. Пользователь вводит два бцч.
+	Конструктор. Принимает на вход размер числа. И заполняет его разряды 0-ми.
 	
-	\verb+cpp_int_unlim(vector<int>, vector<int>);+
+	\verb+UnlimitedInt(int);+
 
 	Конструктор копирования инициализирует создаваемый объект с помощью другого объекта этого класса.
 	
-	\verb+cpp_int_unlim(const cpp_int_unlim& obj);+
+	\verb+UnlimitedInt(const UnlimitedInt& obj);+
 	
-	\item Отдельный метод для ввода бцч
+	\item Функции:
+	Вывод числа
+	\verb+void showNum() const;+
+	Получение размера числа
+    \verb+int getSize() const;+
+    Установка размера числа
+    \verb+void setSize(int);+
+    Конвертация в целочисленный тип
+    \verb+int toInt();+
 	
-	\verb+void enter_numbers(vector<int>, vector<int>);+
+	\item Перегруженные операторы:
 	
-	\item Метод, для промежуточных вычислений(размер каждого числа, какое больше, а какое меньше и т.д.).
+	Члены класса:
 	
-	\verb+void basic_calculations();+
 	
-	Вызов обязателен для *, -, +.
-	
-	\item Метод для сложения
-	
-	\verb+void sum_of_iu();+
-	
-	\item Метод для вычитания
-	
-	\verb+void subtraction_of_iu();+
-	
-	\item Метод для умножения
-	
-	\verb+void multiplication_of_iu();+
-	
-	\item Метод для перевода в int
-	
-	\verb+void iu_to_i();+
-	
-	\item Методы для вывода
-	
-	\verb+void get_...();+
+	\verb+UnlimitedInt & operator=(UnlimitedInt &);+
+    \verb+int &operator[](int);+
+    \verb-UnlimitedInt & operator+=(UnlimitedInt &);-
+    \verb+UnlimitedInt & operator-=(UnlimitedInt &);+
+    \verb+UnlimitedInt & operator*=(UnlimitedInt &);+
+    
+    Не являются членами класса:
+    
+    \verb-UnlimitedInt & operator+(UnlimitedInt &, UnlimitedInt &);-
+	\verb+UnlimitedInt & operator-(UnlimitedInt &, UnlimitedInt &);+
+	\verb+UnlimitedInt & operator*(UnlimitedInt &, UnlimitedInt &);+
 	
 	\item Деструктор	
 	
-	\verb+~cpp_int_unlim();+
+	\verb+~UnlimitedInt();+
 	
-	В деструкторе происходит удалание выделенной памяти под хранение векторов с помощью \verb+.clear();+.
-	
-\end{enumerate}
-
-Класс \verb+cpp_int_unlim_inp+ было решено спроектировать следующим образом: 
-\begin{enumerate}
- 	\item Поле, содержащее объект класса \verb+Array+
- 	
- 	\verb+cpp_int_unlim iu;+
- 	
-	\item Конструктор
-	
-	\verb+cpp_int_unlim_inp();+
-
-	\item Метод, осуществляющий ввод бцч
-	
-	\verb+void cpp_iu_inp();+
-	
-	\item Деструктор	
-	
-	\verb+~~cpp_int_unlim_inp();+
+	В деструкторе происходит удалание выделенной памяти под хранение числа;+.
 	
 \end{enumerate}
 
 \subsection{Тестирование}
 \begin{table}[h]
-\caption{Тестирование обратного числа}
+\caption{Тестирование БЦЧ(в данный момент в обновлённой версии наблюдаются проблемы с оператором =, тесты приведены для старой версии)}
 \label{sum_of_digits_test}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline 
@@ -781,18 +737,20 @@ chapter{Циклы}
 
 \newpage
 \subsection{Листинги}
-\verb+cpp_int_unlim.h+
+\verb+UnlimitedInt.h+
 \lstinputlisting[]
-{../sources/SDP/cppCalculations/cpp_int_unlim.h}
-\verb+cpp_int_unlim.cpp+
+{../sources/SDP/cppCalculations/UnlimitedInt.h}
+\verb+UnlimitedInt.cpp+
 \lstinputlisting[]
-{../sources/SDP/cppCalculations/cpp_int_unlim.cpp}
-\verb+cpp_int_unlim_inp.h+
+{../sources/SDP/cppCalculations/UnlimitedInt.cpp}
+\verb+UnlimitedIntDemo.h+
 \lstinputlisting[]
-{../sources/SDP/cppMenu/cpp_int_unlim_inp.h}
-\verb+cpp_int_unlim_inp.cpp+
+{../sources/SDP/cppMenu/UnlimitedIntDemo.h}
+\verb+UnlimitedIntDemo.cpp+
 \lstinputlisting[]
-{../sources/SDP/cppMenu/cpp_int_unlim_inp.cpp}
+{../sources/SDP/cppMenu/UnlimitedIntDemo.cpp}
+
+Все программы были проверенны cppcheck. Выявлены и устранены ошибки и большинство предупреждений.
 
 \chapter*{Приложения}
 \subsection*{Листинги модульных тестов к заданиям с 1 по 4 включительно}
@@ -801,41 +759,43 @@ chapter{Циклы}
 \newpage
 
 \subsection*{Листинги класса $cpp_sum_of_digits$}
-\lstinputlisting[label=class_cpp_sum_of_digits]
-{../sources/SDP/cppCalculations/cpp_sum_of_digits.h}
-\lstinputlisting[label=class_cpp_sum_of_digits]
-{../sources/SDP/cppCalculations/cpp_sum_of_digits.cpp}
+\lstinputlisting[label=class_SumOfDigits]
+{../sources/SDP/cppCalculations/SumOfDigits.h}
+\lstinputlisting[label=class_SumOfDigits]
+{../sources/SDP/cppCalculations/SumOfDigits.cpp}
 \newpage
 
 \subsection*{Листинги класса $cpp_multiples$}
-\lstinputlisting[]
-{../sources/SDP/cppCalculations/cpp_multiples.h}
+\lstinputlisting[label=class_Multiples]
+{../sources/SDP/cppCalculations/Multiples.h}
+\lstinputlisting[label=class_Multiples]
+{../sources/SDP/cppCalculations/Multiples.cpp}
 
 \newpage
 
 \subsection*{Листинги класса $cpp_reversed_num$}
-\lstinputlisting[label=class_cpp_reversed_num]
-{../sources/SDP/cppCalculations/cpp_reversed_num.h}
-\lstinputlisting[label=class_cpp_reversed_num]
-{../sources/SDP/cppCalculations/cpp_reversed_num.cpp}
+\lstinputlisting[label=class_ReversedNum]
+{../sources/SDP/cppCalculations/ReversedNum.h}
+\lstinputlisting[label=class_ReversedNum]
+{../sources/SDP/cppCalculations/ReversedNum.cpp}
 \newpage
 
 \subsection*{Листинги класса $cpp_matrix_turn$}
-\lstinputlisting[label=class_cpp_matrix_turn]
-{../sources/SDP/cppCalculations/cpp_matrix_turn.h}
-\lstinputlisting[label=class_cpp_matrix_turn]
-{../sources/SDP/cppCalculations/cpp_matrix_turn.cpp}
+\lstinputlisting[label=class_MatrixTurn]
+{../sources/SDP/cppCalculations/MatrixTurn.h}
+\lstinputlisting[label=class_MatrixTurn]
+{../sources/SDP/cppCalculations/MatrixTurn.cpp}
 \newpage
 
 \subsection*{Листинги класса $cpp_keys_in_text$}
-\lstinputlisting[label=class_cpp_keys_in_text]
-{../sources/SDP/cppCalculations/cpp_keys_in_text.h}
-\lstinputlisting[label=class_cpp_keys_in_text]
-{../sources/SDP/cppCalculations/cpp_keys_in_text.cpp}
+\lstinputlisting[label=KeysInText]
+{../sources/SDP/cppCalculations/KeysInText.h}
+\lstinputlisting[label=KeysInText]
+{../sources/SDP/cppCalculations/KeysInText.cpp}
 \newpage
 
 \subsection*{Листинги модульных тестов к заданиям с 1 по 4 включительно на языке C++}
-\lstinputlisting[label=arrayappdemo]
+\lstinputlisting[label=cppTests]
 {../sources/SDP/cpptests/tst_cppteststest.cpp}
 \newpage
 

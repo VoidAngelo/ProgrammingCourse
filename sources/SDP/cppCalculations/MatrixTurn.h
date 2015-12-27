@@ -5,19 +5,20 @@
 
 using namespace std;
 
-class cpp_matrix_turn
+class MatrixTurn
 {
 private:
     int **matrix;
-    int size_of_matrix;
+    int sizeOfMatrix;
 
 public:
-    cpp_matrix_turn();
-    ~cpp_matrix_turn();
-    void enter_matrix(int, int**);
-    void turn_matrix();
-    int get_turned_matrix();
-    int **matrix_turned;
+    MatrixTurn(int);
+    MatrixTurn(int, int**);
+    MatrixTurn(MatrixTurn &);
+    ~MatrixTurn();
+    void putNum(int , int, int);
+    int getNum(int , int);
+    void turnMatrix();
 };
 
 #endif // CPP_MATRIX_TURN

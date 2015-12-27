@@ -1,24 +1,18 @@
 #include "SumOfDigits.h"
 
-cpp_sum_of_digits::cpp_sum_of_digits()
+SumOfDigits::SumOfDigits()
 {
-
+    num = 123;
 }
 
-cpp_sum_of_digits::~cpp_sum_of_digits()
-{
-
-}
-
-
-void cpp_sum_of_digits::enter_number(int number)
+SumOfDigits::SumOfDigits(int number)
 {
     num=number;
 }
 
-void cpp_sum_of_digits::sum_of_digits()
+int SumOfDigits::Sum()
 {
-    sum=0;
+    int sum=0;
     int temp=0;
     while(num!=0)
     {
@@ -26,12 +20,6 @@ void cpp_sum_of_digits::sum_of_digits()
         num=num/10;
         sum=sum+temp;
     }
-}
-
-int cpp_sum_of_digits::get_sum()
-{
-    cout<<"Sum of digits is: ";
-    cout<<sum<<endl;
     return sum;
 }
 

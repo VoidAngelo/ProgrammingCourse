@@ -2,22 +2,11 @@
 #include <QtTest>
 
 #include "UnlimitedInt.h"
-//#include "cpp_keys_in_text.h"
+#include "KeysInText.h"
 #include "MatrixTurn.h"
 #include "Multiples.h"
 #include "ReversedNum.h"
 #include "SumOfDigits.h"
-
-int compare_matrix(int **matrix, int **matrix_r, int square)
-{
-    for (int i=0; i<square; i++)
-        for (int j=0; j<square; j++)
-        {
-            if (matrix[i][j]!=matrix_r[i][j])
-            return 1;
-        }
-    return 0;
-}
 
 class CppTestsTest : public QObject
 {
@@ -27,85 +16,142 @@ public:
     CppTestsTest();
 
 private Q_SLOTS:
-    void test_sum_of_digits();
-    void test_reversed_num();
-    void test_multiples();
-    void test_matrix_turn();
-    void test_iu_sum();
+    void testSumOfDigits();
+    void testReversedNum();
+    void testMultiples();
+    void testMatrixTurn();
+    void testKeysInText();
+    /*void test_iu_sum();
     void test_iu_subt();
-    void test_iu_mult();
+    void test_iu_mult();*/
 };
 
 CppTestsTest::CppTestsTest()
 {
 }
 
-void CppTestsTest::test_sum_of_digits()
+void CppTestsTest::testSumOfDigits()
 {
-    cpp_sum_of_digits sum;
-    sum.enter_number(248);
-    sum.sum_of_digits();
-    QCOMPARE(sum.get_sum(), 14);
+    SumOfDigits num(248);
+    int sum=num.Sum();
+    QCOMPARE(sum, 14);
 }
 
-void CppTestsTest::test_reversed_num()
+void CppTestsTest::testReversedNum()
 {
-    cpp_reversed_num num;
-    num.enter_number(248);
-    num.reversion_of_num();
-    QCOMPARE(num.get_reversion(), 842);
+    ReversedNum num(248);
+    int reversion=num.Reversion();
+    QCOMPARE(reversion, 842);
 }
 
-void CppTestsTest::test_multiples()
+void CppTestsTest::testMultiples()
 {
-    int numbers[3];
-    numbers[0]=2;
-    numbers[1]=4;
-    numbers[2]=8;
-    cpp_multiples num;
-    num.enter_numbers(numbers);
-    num.find_multiples();
-    QCOMPARE(num.get_amount(), 3);
+    int trigger=0;
+    vector<int> numbers;
+    numbers.push_back(5);
+    numbers.push_back(10);
+    numbers.push_back(11);
+    numbers.push_back(22);
+    vector<int> multiples_test;
+    multiples_test.push_back(10005);
+    multiples_test.push_back(22011);
+    Multiples nums(numbers);
+    vector<int> multiples=nums.findMultiples();
+    for (int i=0; i<multiples.size(); i++)
+    {
+        if (multiples[i]!=multiples_test[i])
+        {
+            trigger=1;
+            break;
+        }
+    }
+    QCOMPARE(trigger, 0);
 }
 
-void CppTestsTest::test_matrix_turn()
+void CppTestsTest::testMatrixTurn()
 {
-    /*int size_of_matrix=3, k;
-    int **matrix = new int* [size_of_matrix];
-    for (int i = 0; i < size_of_matrix; i++)
-        matrix[i] = new int [size_of_matrix];
+    int sizeOfMatrix=3, k=0, trigger=0;
 
-    for(int i=0; i<size_of_matrix; i++)
-        for(int j=0; j<size_of_matrix; j++)
+    MatrixTurn matrix(sizeOfMatrix);
+    for(int i=0; i<sizeOfMatrix; i++)
+    {
+        for(int j=0; j<sizeOfMatrix; j++)
         {
             k++;
-            matrix[i][j]=k;
+            matrix.putNum(i, j, k);
         }
+    }
 
-    int **matrix_r = new int* [size_of_matrix];
-    for (int i = 0; i < size_of_matrix; i++)
-        matrix_r[i] = new int [size_of_matrix];
+    int **matrix_r = new int* [sizeOfMatrix];
+    for (int i = 0; i < sizeOfMatrix; i++)
+    {
+        matrix_r[i] = new int [sizeOfMatrix];
+    }
+
     k=0;
-    for(int i=0; i<size_of_matrix; i++)
-        for(int j=0; j<size_of_matrix; j++)
+    for(int i=0; i<sizeOfMatrix; i++)
+    {
+        for(int j=0; j<sizeOfMatrix; j++)
         {
             k++;
-            matrix_r[i][j]=k+size_of_matrix*2-4*j-2*i;
+            matrix_r[i][j]=k+sizeOfMatrix*2-4*j-2*i;
         }
-    cpp_matrix_turn matr;
-    matr.enter_matrix(size_of_matrix, matrix);
-    matr.turn_matrix();
-    for(int i=0; i<size_of_matrix; i++)
-        for(int j=0; j<size_of_matrix; j++)
+    }
+
+    matrix.turnMatrix();
+
+    for (int i=0; i<sizeOfMatrix; i++)
+    {
+        for (int j=0; j<sizeOfMatrix; j++)
         {
-            matrix[i][j]=matr.matrix_turned[i][j];
+            if (matrix_r[i][j]!=matrix.getNum(i, j))
+            {
+                trigger=1;
+                break;
+            }
         }
-    QCOMPARE(compare_matrix(matrix, matrix_r, size_of_matrix), 0);
-    delete[] matrix;
-    delete[] matrix_r;*/
+    }
+
+    QCOMPARE(trigger, 0);
+
+    for (int i=0; i<sizeOfMatrix; i++)
+    {
+        delete [] matrix_r[i];
+    }
+    delete [] matrix_r;
 }
 
-void CppTestsTest::test_iu_sum()
+void CppTestsTest::testKeysInText()
+{
+    int trigger=0;
+    vector<string> strings;
+    strings.push_back("ololo");
+    strings.push_back("lol");
+    strings.push_back("o");
+
+    vector<string> keys;
+    keys.push_back("o");
+    keys.push_back("l");
+
+    KeysInText kit(strings);
+    vector<int> result=kit.findKeys(keys);
+
+    vector<int> r_test;
+    r_test.push_back(5);
+    r_test.push_back(4);
+
+    for (int i=0; i<r_test.size(); i++)
+    {
+        if (r_test[i]!=result[i])
+        {
+            trigger=1;
+            break;
+        }
+    }
+    QCOMPARE(trigger, 0);
+}
+
+/*void CppTestsTest::test_iu_sum()
 {
     UnlimitedInt num1(5);
     num1[0]=1;
@@ -160,7 +206,7 @@ void CppTestsTest::test_iu_mult()
     UnlimitedInt mult(1);
     mult=num1*num2;
     QCOMPARE(mult, 77777);
-}
+}*/
 
 QTEST_APPLESS_MAIN(CppTestsTest)
 

@@ -2,21 +2,21 @@
 #define CPP_MULTIPLES_SEARCH
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-class cpp_multiples
+class Multiples
 {
 private:
-    int numbers[3];
-    int amount;
+    vector<int> numbers;
+    vector<int> multiples;
 
 public:
-    cpp_multiples();
-    ~cpp_multiples();
-    void enter_numbers(int*);
-    void find_multiples();
-    int get_amount();
+    Multiples();
+    Multiples(vector<int> &);
+    ~Multiples();
+    vector<int> & findMultiples();
 };
 
 #endif // CPP_MULTIPLES_SEARCH
