@@ -113,7 +113,7 @@ UnlimitedInt & UnlimitedInt::operator+=(UnlimitedInt &num2)
     return *this;
 }
 
-UnlimitedInt & operator+(UnlimitedInt &num1, UnlimitedInt &num2)
+UnlimitedInt operator+(UnlimitedInt &num1, UnlimitedInt &num2)
 {
     UnlimitedInt temp = num1;
     return temp+=num2;
@@ -180,7 +180,7 @@ UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
     return *this;
 }
 
-UnlimitedInt & operator-(UnlimitedInt &num1, UnlimitedInt &num2)
+UnlimitedInt operator-(UnlimitedInt &num1, UnlimitedInt &num2)
 {
     UnlimitedInt temp = num1;
     return temp-=num2;
@@ -259,7 +259,7 @@ UnlimitedInt & UnlimitedInt::operator*=(UnlimitedInt &num2)
     return *this;
 }
 
-UnlimitedInt & operator*(UnlimitedInt &num1, UnlimitedInt &num2)
+UnlimitedInt operator*(UnlimitedInt &num1, UnlimitedInt &num2)
 {
     UnlimitedInt temp = num1;
     return temp-=num2;

@@ -28,8 +28,8 @@ public:
     int toInt();
 };
 
-UnlimitedInt & operator+(UnlimitedInt &, UnlimitedInt &);
-UnlimitedInt & operator-(UnlimitedInt &, UnlimitedInt &);
-UnlimitedInt & operator*(UnlimitedInt &, UnlimitedInt &);
+UnlimitedInt operator+(UnlimitedInt &, UnlimitedInt &);
+UnlimitedInt operator-(UnlimitedInt &, UnlimitedInt &);
+UnlimitedInt operator*(UnlimitedInt &, UnlimitedInt &);
 
 #endif // INT_UNLIM_UI_H
