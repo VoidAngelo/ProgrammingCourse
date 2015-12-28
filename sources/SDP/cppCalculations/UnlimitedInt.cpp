@@ -137,12 +137,12 @@ UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
         {
             if (num[i] < num2.num[i])
             {
-                trigger=3;
-                break;
+                trigger=1;
             }
             else
             {
-                trigger=1;
+                trigger=2;
+                break;
             }
         }
 
@@ -173,7 +173,7 @@ UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
         }
     }
 
-    if (trigger!=1)
+    if (trigger==1)
     {
         num[0]*=-1;
     }
@@ -188,18 +188,26 @@ UnlimitedInt & operator-(UnlimitedInt &num1, UnlimitedInt &num2)
 
 UnlimitedInt & UnlimitedInt::operator*=(UnlimitedInt &num2)
 {
-    int temp_size=sizeOfNum;
-    setSize(sizeOfNum+num2.sizeOfNum-1);
+    UnlimitedInt temp(sizeOfNum+num2.sizeOfNum-1);
     int** mult_calc = new int* [num2.sizeOfNum];
-        for (int i = 0; i < sizeOfNum; i++)
-            mult_calc[i] = new int [sizeOfNum];
+    for (int i = 0; i < sizeOfNum; i++)
+    {
+        mult_calc[i] = new int [temp.sizeOfNum];
+    }
+
+    for(int i = 0; i < num2.sizeOfNum; i++)
+    {
+        for(int j = 0; j < temp.sizeOfNum; j++)
+        {
+            mult_calc[i][j]=0;
+        }
+    }
 
     int k=0;
-    int l=sizeOfNum-1;
     for(int i = num2.sizeOfNum-1; i >= 0; i--)
     {
-        l=sizeOfNum-1;
-        for(int j = temp_size; j >= 0; j--)
+        int l=temp.sizeOfNum-1;
+        for(int j = sizeOfNum-1; j >= 0; j--)
         {
             mult_calc[k][l-k] = num2.num[i]*num[j];
             l--;
@@ -209,7 +217,7 @@ UnlimitedInt & UnlimitedInt::operator*=(UnlimitedInt &num2)
 
     for(int i = 0; i < num2.sizeOfNum; i++)
     {
-        for(int j = sizeOfNum-1; j > num2.sizeOfNum-1-i; j--)
+        for(int j = temp.sizeOfNum-1; j > num2.sizeOfNum-1-i; j--)
         {
             if(mult_calc[i][j]>=10)
             {
@@ -219,6 +227,8 @@ UnlimitedInt & UnlimitedInt::operator*=(UnlimitedInt &num2)
             }
         }
     }
+
+    *this=temp;
 
     for(int j = sizeOfNum-1; j >= 0; j--)
     {

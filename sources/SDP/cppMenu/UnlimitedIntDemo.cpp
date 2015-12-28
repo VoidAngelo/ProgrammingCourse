@@ -59,7 +59,7 @@ void UnlimitedIntDemo::checkSubt()
     cout<<"-";
     num2.showNum();
     cout<<"=";
-    subt=num1-num2;
+    subt=num1=num2;
     subt.showNum();
     cout << endl;
 }
@@ -71,7 +71,7 @@ void UnlimitedIntDemo::checkMult()
     cout<<"*";
     num2.showNum();
     cout<<"=";
-    mult=num1*num2;
+    mult=num1*=num2;
     mult.showNum();
     cout << endl;
 }
