@@ -151,7 +151,7 @@ void CppTestsTest::testKeysInText()
     QCOMPARE(trigger, 0);
 }
 
-/*void CppTestsTest::test_iu_sum()
+void CppTestsTest::test_iu_sum()
 {
     UnlimitedInt num1(5);
     num1[0]=1;
@@ -165,7 +165,7 @@ void CppTestsTest::testKeysInText()
     num2[2]=4;
     num2[3]=3;
     num2[4]=2;
-    UnlimitedInt sum(1);
+    UnlimitedInt sum;
     sum=num1+num2;
     QCOMPARE(sum, 77777);
 }
@@ -184,7 +184,7 @@ void CppTestsTest::test_iu_subt()
     num2[2]=4;
     num2[3]=3;
     num2[4]=2;
-    UnlimitedInt subt(1);
+    UnlimitedInt subt;
     subt=num1-num2;
     QCOMPARE(subt, 77777);
 }
@@ -203,10 +203,10 @@ void CppTestsTest::test_iu_mult()
     num2[2]=4;
     num2[3]=3;
     num2[4]=2;
-    UnlimitedInt mult(1);
+    UnlimitedInt mult;
     mult=num1*num2;
-    QCOMPARE(mult, 77777);
-}*/
+    QCOMPARE(mult, 807758040);
+}
 
 QTEST_APPLESS_MAIN(CppTestsTest)
 

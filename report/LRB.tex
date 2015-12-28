@@ -661,7 +661,7 @@ chapter{Циклы}
 \begin{enumerate}
  	\item Поле, содержащие бцч и его размер
  	
- 	\verb+vector<int> num;+
+ 	\verb+vector<int> num;+\\
     \verb+int sizeOfNum;+	
 		 
 	\item Конструкторы:
@@ -672,7 +672,7 @@ chapter{Циклы}
 	
 	\verb+UnlimitedInt();+
 	
-	Конструктор. Принимает на вход размер числа. И заполняет его разряды 0-ми.
+	Конструктор. Принимает на вход размер числа и заполняет его разряды 0-ми.
 	
 	\verb+UnlimitedInt(int);+
 
@@ -680,38 +680,39 @@ chapter{Циклы}
 	
 	\verb+UnlimitedInt(const UnlimitedInt& obj);+
 	
-	\item Функции:
-	Вывод числа
-	\verb+void showNum() const;+
-	Получение размера числа
-    \verb+int getSize() const;+
-    Установка размера числа
-    \verb+void setSize(int);+
-    Конвертация в целочисленный тип
-    \verb+int toInt();+
+	\item Функции:\\
+	
+	Вывод числа\\
+	\verb+void showNum() const;+\\
+	Получение размера числа\\
+    \verb+int getSize() const;+\\
+    Установка размера числа\\
+    \verb+void setSize(int);+\\
+    Конвертация в целочисленный тип\\
+    \verb+int toInt();+\\
 	
 	\item Перегруженные операторы:
 	
 	Члены класса:
 	
 	
-	\verb+UnlimitedInt & operator=(UnlimitedInt &);+
-    \verb+int &operator[](int);+
-    \verb-UnlimitedInt & operator+=(UnlimitedInt &);-
-    \verb+UnlimitedInt & operator-=(UnlimitedInt &);+
-    \verb+UnlimitedInt & operator*=(UnlimitedInt &);+
+	\verb+UnlimitedInt & operator=(UnlimitedInt &);+\\
+    \verb+int &operator[](int);+\\
+    \verb-UnlimitedInt & operator+=(UnlimitedInt &);-\\
+    \verb+UnlimitedInt & operator-=(UnlimitedInt &);+\\
+    \verb+UnlimitedInt & operator*=(UnlimitedInt &);+\\
     
-    Не являются членами класса:
+    Не являются членами класса:\\
     
-    \verb-UnlimitedInt & operator+(UnlimitedInt &, UnlimitedInt &);-
-	\verb+UnlimitedInt & operator-(UnlimitedInt &, UnlimitedInt &);+
-	\verb+UnlimitedInt & operator*(UnlimitedInt &, UnlimitedInt &);+
+    \verb-UnlimitedInt operator+(UnlimitedInt &, UnlimitedInt &);-\\
+	\verb+UnlimitedInt operator-(UnlimitedInt &, UnlimitedInt &);+\\
+	\verb+UnlimitedInt operator*(UnlimitedInt &, UnlimitedInt &);+\\
 	
 	\item Деструктор	
 	
 	\verb+~UnlimitedInt();+
 	
-	В деструкторе происходит удалание выделенной памяти под хранение числа;+.
+	В деструкторе происходит удалание выделенной памяти под хранение числа.
 	
 \end{enumerate}
 
