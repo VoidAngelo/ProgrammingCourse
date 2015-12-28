@@ -42,7 +42,7 @@ void UnlimitedIntDemo::inputNums()
 
 void UnlimitedIntDemo::checkSum()
 {
-    UnlimitedInt sum(1);
+    UnlimitedInt sum;
     num1.showNum();
     cout<<"+";
     num2.showNum();
@@ -54,7 +54,7 @@ void UnlimitedIntDemo::checkSum()
 
 void UnlimitedIntDemo::checkSubt()
 {
-    UnlimitedInt subt(1);
+    UnlimitedInt subt;
     num1.showNum();
     cout<<"-";
     num2.showNum();
@@ -66,7 +66,7 @@ void UnlimitedIntDemo::checkSubt()
 
 void UnlimitedIntDemo::checkMult()
 {
-    UnlimitedInt mult(1);
+    UnlimitedInt mult;
     num1.showNum();
     cout<<"*";
     num2.showNum();

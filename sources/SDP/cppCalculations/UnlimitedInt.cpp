@@ -4,7 +4,8 @@
 UnlimitedInt::UnlimitedInt()
 {
     sizeOfNum=0;
-    num=0;
+    num=new int[1];
+    num[0]=0;
 }
 
 UnlimitedInt::UnlimitedInt(int size)
@@ -85,14 +86,19 @@ UnlimitedInt & UnlimitedInt::operator+=(UnlimitedInt &num2)
     if(sizeOfNum<num2.sizeOfNum)
     {
         sizeOfMin=sizeOfNum;
+        for(int i = 0; i < sizeOfMin; i++)
+        {
+            num2[num2.sizeOfNum-1-i]+=num[sizeOfNum-1-i];
+        }
+        *this=num2;
     }
     else
     {
         sizeOfMin=num2.sizeOfNum;
-    }
-    for(int i = 0; i < sizeOfMin; i++)
-    {
-        num[sizeOfNum-1-i]+=num2[num2.sizeOfNum-1-i];
+        for(int i = 0; i < sizeOfMin; i++)
+        {
+            num[sizeOfNum-1-i]+=num2[num2.sizeOfNum-1-i];
+        }
     }
 
     for(int i = sizeOfNum-1; i > 0; i--)
@@ -144,17 +150,20 @@ UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
     if(trigger==1)
     {
         sizeOfMin=sizeOfNum;
+        for(int i = 0; i < sizeOfMin; i++)
+        {
+            num2[num2.sizeOfNum-1-i]-=num[sizeOfNum-1-i];
+        }
+        *this=num2;
     }
     else
     {
         sizeOfMin=num2.sizeOfNum;
+        for(int i = 0; i < sizeOfMin; i++)
+        {
+            num[sizeOfNum-1-i]-=num2[num2.sizeOfNum-1-i];
+        }
     }
-
-    for(int i = 0; i < sizeOfMin; i++)
-    {
-        num[sizeOfNum-1-i]-=num2[num2.sizeOfNum-1-i];
-    }
-
     for(int i = sizeOfNum-1; i > 0; i--)
     {
         if(num[i]<0)
@@ -164,7 +173,7 @@ UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
         }
     }
 
-    if (trigger==3)
+    if (trigger!=1)
     {
         num[0]*=-1;
     }
