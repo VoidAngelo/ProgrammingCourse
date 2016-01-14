@@ -1,4 +1,5 @@
 #include"c_multiples.h"
+#include<stdio.h>
 
 int c_calc_multiples(int *numbers)
 {

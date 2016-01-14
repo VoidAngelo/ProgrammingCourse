@@ -1,5 +1,5 @@
-#ifndef CPP_INT_UNLIM_INP
-#define CPP_INT_UNLIM_INP
+#ifndef UNLIMITEDINT_INP
+#define UNLIMITEDINT_INP
 
 #include "UnlimitedInt.h"
 #include <string>
@@ -16,7 +16,6 @@ private:
     void checkSubt();
     void checkMult();
     void checkToInt();
-    //void checkCopy(ArrayApp &) const;
     UnlimitedInt num1;
     UnlimitedInt num2;
 public:

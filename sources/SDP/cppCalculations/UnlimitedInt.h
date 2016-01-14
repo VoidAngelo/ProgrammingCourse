@@ -1,5 +1,5 @@
-#ifndef INT_UNLIM_UI_H
-#define INT_UNLIM_UI_H
+#ifndef UNLIMITEDINT_H
+#define UNLIMITEDINT_H
 
 #include <iostream>
 
@@ -9,8 +9,10 @@ using namespace std;
 class UnlimitedInt
 {
 private:
-    int *num;
+    int*num;
     int sizeOfNum;
+    int compare(int, int*) const;
+    void overflow(int);
 
 public:
     UnlimitedInt();
@@ -33,4 +35,4 @@ UnlimitedInt operator+(UnlimitedInt &, UnlimitedInt &);
 UnlimitedInt operator-(UnlimitedInt &, UnlimitedInt &);
 UnlimitedInt operator*(UnlimitedInt &, UnlimitedInt &);
 
-#endif // INT_UNLIM_UI_H
+#endif // UNLIMITEDINT_H

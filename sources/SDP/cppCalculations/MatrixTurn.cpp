@@ -63,7 +63,7 @@ int MatrixTurn::getNum(int i, int j)
 }
 
 
-void MatrixTurn::turnMatrix()
+void MatrixTurn::turnMatrix() const
 {
     int** matrix_turned = new int* [sizeOfMatrix];
     {

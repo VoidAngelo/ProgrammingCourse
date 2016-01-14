@@ -58,7 +58,7 @@ void UnlimitedInt::setSize(int size)
     }
 }
 
-int & UnlimitedInt::operator[](int j)
+int & UnlimitedInt::operator[](int j) const
     {
         return num[j];
     }
@@ -81,10 +81,70 @@ UnlimitedInt & UnlimitedInt::operator=(UnlimitedInt &num2)
     return *this;
 }
 
+int UnlimitedInt::compare(int sizeOfNum2, int* num2) const
+{
+    int trigger;
+    if(sizeOfNum<sizeOfNum2)
+    {
+        trigger=1;
+    }
+    else if(sizeOfNum>sizeOfNum2)
+    {
+        trigger=2;
+    }
+    else
+    {
+        for(int i=0; i<sizeOfNum; i++)
+        {
+            if (num[i] < num2[i])
+            {
+                trigger=1;
+            }
+            else
+            {
+                trigger=2;
+                break;
+            }
+        }
+
+    }
+    return trigger;
+}
+
+void UnlimitedInt::overflow(int trigger)
+{
+    if(trigger==1)
+    {
+        for(int i = sizeOfNum-1; i > 0; i--)
+        {
+            if(num[i]>=10)
+            {
+                int overflow=num[i]/10;
+                num[i]=num[i]%10;
+                num[i-1]=num[i-1]+overflow;
+            }
+        }
+    }
+    else
+    {
+        for(int i = sizeOfNum-1; i > 0; i--)
+        {
+            if(num[i]<0)
+            {
+                num[i]=num[i]+10;
+                num[i-1]--;
+            }
+        }
+    }
+
+}
+
 UnlimitedInt & UnlimitedInt::operator+=(UnlimitedInt &num2)
 {
     int sizeOfMin;
-    if(sizeOfNum<num2.sizeOfNum)
+    int trigger;
+    trigger=compare(num2.sizeOfNum, num2.num);
+    if(trigger==1)
     {
         sizeOfMin=sizeOfNum;
         for(int i = 0; i < sizeOfMin; i++)
@@ -101,16 +161,7 @@ UnlimitedInt & UnlimitedInt::operator+=(UnlimitedInt &num2)
             num[sizeOfNum-1-i]+=num2[num2.sizeOfNum-1-i];
         }
     }
-
-    for(int i = sizeOfNum-1; i > 0; i--)
-    {
-        if(num[i]>=10)
-        {
-            int overflow=num[i]/10;
-            num[i]=num[i]%10;
-            num[i-1]=num[i-1]+overflow;
-        }
-    }
+    overflow(1);
     return *this;
 }
 
@@ -124,30 +175,7 @@ UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
 {
     int sizeOfMin;
     int trigger;
-    if(sizeOfNum<num2.sizeOfNum)
-    {
-        trigger=1;
-    }
-    else if(sizeOfNum>num2.sizeOfNum)
-    {
-        trigger=2;
-    }
-    else
-    {
-        for(int i=0; i<sizeOfNum; i++)
-        {
-            if (num[i] < num2.num[i])
-            {
-                trigger=1;
-            }
-            else
-            {
-                trigger=2;
-                break;
-            }
-        }
-
-    }
+    trigger=compare(num2.sizeOfNum, num2.num);;
     if(trigger==1)
     {
         sizeOfMin=sizeOfNum;
@@ -165,15 +193,7 @@ UnlimitedInt & UnlimitedInt::operator-=(UnlimitedInt &num2)
             num[sizeOfNum-1-i]-=num2[num2.sizeOfNum-1-i];
         }
     }
-    for(int i = sizeOfNum-1; i > 0; i--)
-    {
-        if(num[i]<0)
-        {
-            num[i]=num[i]+10;
-            num[i-1]--;
-        }
-    }
-
+    overflow(2);
     if (trigger==1)
     {
         num[0]*=-1;
@@ -247,16 +267,7 @@ UnlimitedInt & UnlimitedInt::operator*=(UnlimitedInt &num2)
     }
     delete [] mult_calc;
 
-    for(int i = sizeOfNum-1; i > 0; i--)
-    {
-        if(num[i]>=10)
-        {
-            int overflow=num[i]/10;
-            num[i]=num[i]%10;
-            num[i-1]=num[i-1]+overflow;
-        }
-    }
-
+    overflow(1);
     return *this;
 }
 
