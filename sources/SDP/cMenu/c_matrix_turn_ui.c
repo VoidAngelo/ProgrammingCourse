@@ -103,7 +103,7 @@ void c_matrix_turn_csolution(int size_of_matrix, int **matrix)
     }
 
     printf("\n");
-    getch();
+    system("pause");
     system("cls");
 }
 
@@ -179,7 +179,7 @@ void c_matrix_turn_fsolution(int size_of_matrix, int **matrix)
 
     printf("Check result in %s\n\n", file_o);
     fclose(fout);
-    getch();
+    system("pause");
     system("cls");
 }
 

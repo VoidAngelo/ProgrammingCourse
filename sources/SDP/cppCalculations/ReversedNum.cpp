@@ -1,23 +1,14 @@
 #include "ReversedNum.h"
 
-ReversedNum::ReversedNum()
-{
-    num=123;
-}
-
-ReversedNum::ReversedNum(int number)
-{
-    num=number;
-}
-
-int ReversedNum::Reversion()
+int ReversedNum::Reversion(const int num)
 {
     int reversion=0;
     int temp=0;
-    while(num!=0)
+    int temp_num=num;
+    while(temp_num!=0)
     {
-        temp=num%10;
-        num=num/10;
+        temp=temp_num%10;
+        temp_num=temp_num/10;
         reversion=reversion*10+temp;
     }
     return reversion;

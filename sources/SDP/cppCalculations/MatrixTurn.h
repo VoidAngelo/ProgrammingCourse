@@ -18,7 +18,7 @@ public:
     ~MatrixTurn();
     void putNum(int , int, int);
     int getNum(int , int);
-    void turnMatrix();
+    void turnMatrix() const;
 };
 
 #endif // CPP_MATRIX_TURN

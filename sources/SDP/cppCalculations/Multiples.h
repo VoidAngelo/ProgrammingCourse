@@ -10,13 +10,12 @@ class Multiples
 {
 private:
     vector<int> numbers;
-    vector<int> multiples;
+    vector<vector<int> > multiples;
 
 public:
-    Multiples();
     Multiples(vector<int> &);
     ~Multiples();
-    vector<int> & findMultiples();
+    vector<vector<int> > & findMultiples();
 };
 
 #endif // CPP_MULTIPLES_SEARCH

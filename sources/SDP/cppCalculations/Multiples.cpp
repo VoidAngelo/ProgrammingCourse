@@ -1,22 +1,9 @@
 #include "Multiples.h"
 #include "Exceptions.h"
 
-Multiples::Multiples()
-{
-    numbers.push_back(5);
-    numbers.push_back(10);
-    numbers.push_back(11);
-}
-
-Multiples::~Multiples()
-{
-    numbers.clear();
-    multiples.clear();
-}
-
 Multiples::Multiples(vector<int> &nums)
 {
-    for (int i=0; i<nums.size(); i++)
+    for (unsigned int i=0; i<nums.size(); i++)
     {
         if (nums[i]>999)
         {
@@ -29,14 +16,24 @@ Multiples::Multiples(vector<int> &nums)
     }
 }
 
-vector<int> & Multiples::findMultiples()
+Multiples::~Multiples()
 {
-    for (int i=0; i<numbers.size(); i++)
-        for (int j=0; j<numbers.size(); j++)
+    numbers.clear();
+    multiples.clear();
+}
+
+vector<vector<int> > & Multiples::findMultiples()
+{
+    vector<int> pair;
+    pair.reserve(2);
+    for (unsigned int i=0; i<numbers.size(); i++)
+        for (unsigned int j=0; j<numbers.size(); j++)
         {
             if(i!=j && numbers[i]%numbers[j]==0)
             {
-                multiples.push_back(numbers[i]*1000+numbers[j]);
+                pair[0]=numbers[i];
+                pair[1]=numbers[j];
+                multiples.push_back(pair);
             }
         }
     return multiples;

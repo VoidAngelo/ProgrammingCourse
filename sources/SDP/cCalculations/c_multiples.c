@@ -13,7 +13,6 @@ int c_calc_multiples(int *numbers)
             }
         }
     if (trigger == 0)
-         printf("Таких чисел нет\n\n");
+         printf("РўР°РєРёС… С‡РёСЃРµР» РЅРµС‚\n\n");
     return trigger;
 }
-

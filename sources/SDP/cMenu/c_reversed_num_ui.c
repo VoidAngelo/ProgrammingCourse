@@ -60,7 +60,7 @@ void c_reversed_num_solution(int num_t3)
 {
     int result_t3 = c_calc_reversed_num(num_t3);
     printf("Result: %d\n\n", result_t3);
-    getch();
+    system("pause");
     system("cls");
 }
 

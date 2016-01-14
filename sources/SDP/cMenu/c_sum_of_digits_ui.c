@@ -60,7 +60,7 @@ void c_sum_of_digits_solution(int num_t1)
 {
     int result_t1 = c_calc_sum_of_digits(num_t1);
     printf("Result: %d\n\n", result_t1);
-    getch();
+    system("pause");
     system("cls");
 }
 

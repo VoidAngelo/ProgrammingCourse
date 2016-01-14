@@ -16,7 +16,7 @@ void UnlimitedIntDemo::inputNums()
     cin>>s1;
     int size1=s1.length();
     num1.setSize(size1);
-    for(int i=0; i<s1.length(); i++)
+    for(unsigned int i=0; i<s1.length(); i++)
     {
         char c = s1[i];
         if ((c>='0') && (c<='9'))
@@ -29,7 +29,7 @@ void UnlimitedIntDemo::inputNums()
     cin>>s2;
     int size2=s1.length();
     num2.setSize(size2);
-    for(int i=0; i<s1.length(); i++)
+    for(unsigned int i=0; i<s1.length(); i++)
     {
         char c = s2[i];
         if ((c>='0') && (c<='9'))
@@ -43,36 +43,24 @@ void UnlimitedIntDemo::inputNums()
 void UnlimitedIntDemo::checkSum()
 {
     UnlimitedInt sum;
-    num1.showNum();
-    cout<<"+";
-    num2.showNum();
-    cout<<"=";
-    sum=num1+num2;
-    sum.showNum();
+    //sum=num1+num2;
+    cout<<num1<<"+"<<num2<<"="<<sum;
     cout << endl;
 }
 
 void UnlimitedIntDemo::checkSubt()
 {
     UnlimitedInt subt;
-    num1.showNum();
-    cout<<"-";
-    num2.showNum();
-    cout<<"=";
-    subt=num1-num2;
-    subt.showNum();
+    //subt=num1-num2;
+    cout<<num1<<"-"<<num2<<"="<<subt;
     cout << endl;
 }
 
 void UnlimitedIntDemo::checkMult()
 {
     UnlimitedInt mult;
-    num1.showNum();
-    cout<<"*";
-    num2.showNum();
-    cout<<"=";
-    mult=num1*num2;
-    mult.showNum();
+    //mult=num1*num2;
+    cout<<num1<<"*"<<num2<<"="<<mult;
     cout << endl;
 }
 

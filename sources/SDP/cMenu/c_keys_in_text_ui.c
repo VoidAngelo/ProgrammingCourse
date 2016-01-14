@@ -141,7 +141,7 @@ void c_keys_in_text_csolution(char **strings, char **keys, int num_of_strings, i
     }
 
     free(result);
-    getch();
+    system("pause");
     system("cls");
 }
 
@@ -264,7 +264,7 @@ void c_keys_in_text_fsolution(char **strings, char **keys, int num_of_strings, i
     printf("Check result in %s", file_o);
 
     fclose(fout);
-    getch();
+    system("pause");
     system("cls");
 }
 

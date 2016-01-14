@@ -65,7 +65,7 @@ void c_multiples_solution(int *numbers)
     puts("Result:");
     c_calc_multiples(numbers);
     printf("\n\n");
-    getch();
+    system("pause");
     system("cls");
 }
 

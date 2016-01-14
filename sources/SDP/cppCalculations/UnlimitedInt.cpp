@@ -34,12 +34,13 @@ UnlimitedInt::~UnlimitedInt()
     delete[] num;
 }
 
-void UnlimitedInt::showNum() const
+ostream & operator<<(ostream & os, UnlimitedInt & number)
 {
-    for(int i = 0; i < sizeOfNum; i++)
+    for(int i = 0; i < number.sizeOfNum; i++)
     {
-        cout << num[i];
+        cout << number.num[i];
     }
+    return os;
 }
 
 int UnlimitedInt::getSize() const

@@ -32,15 +32,15 @@ CppTestsTest::CppTestsTest()
 
 void CppTestsTest::testSumOfDigits()
 {
-    SumOfDigits num(248);
-    int sum=num.Sum();
+    SumOfDigits num;
+    int sum=num.Sum(248);
     QCOMPARE(sum, 14);
 }
 
 void CppTestsTest::testReversedNum()
 {
-    ReversedNum num(248);
-    int reversion=num.Reversion();
+    ReversedNum num;
+    int reversion=num.Reversion(248);
     QCOMPARE(reversion, 842);
 }
 
@@ -52,17 +52,32 @@ void CppTestsTest::testMultiples()
     numbers.push_back(10);
     numbers.push_back(11);
     numbers.push_back(22);
-    vector<int> multiples_test;
-    multiples_test.push_back(10005);
-    multiples_test.push_back(22011);
-    Multiples nums(numbers);
-    vector<int> multiples=nums.findMultiples();
-    for (int i=0; i<multiples.size(); i++)
+    vector<vector<int> > multiples_test;
+    vector<int> pair;
+    pair.reserve(2);
+    for (unsigned int i=0; i<numbers.size(); i++)
     {
-        if (multiples[i]!=multiples_test[i])
+        for (unsigned int j=0; j<numbers.size(); j++)
         {
-            trigger=1;
-            break;
+            if(i!=j && numbers[i]%numbers[j]==0)
+            {
+                pair[0]=numbers[i];
+                pair[1]=numbers[j];
+                multiples_test.push_back(pair);
+            }
+        }
+    }
+    Multiples nums(numbers);
+    vector<vector<int> > multiples=nums.findMultiples();
+    for (unsigned int i=0; i<multiples_test.size(); i++)
+    {
+        for (unsigned int j=0; j<pair.size(); j++)
+        {
+            if (multiples[i][j]!=multiples_test[i][j])
+            {
+                trigger=1;
+                break;
+            }
         }
     }
     QCOMPARE(trigger, 0);
@@ -140,7 +155,7 @@ void CppTestsTest::testKeysInText()
     r_test.push_back(5);
     r_test.push_back(4);
 
-    for (int i=0; i<r_test.size(); i++)
+    for (unsigned int i=0; i<r_test.size(); i++)
     {
         if (r_test[i]!=result[i])
         {
@@ -151,7 +166,7 @@ void CppTestsTest::testKeysInText()
     QCOMPARE(trigger, 0);
 }
 
-void CppTestsTest::test_iu_sum()
+/*void CppTestsTest::test_iu_sum()
 {
     UnlimitedInt num1(5);
     num1[0]=1;
@@ -206,7 +221,7 @@ void CppTestsTest::test_iu_mult()
     UnlimitedInt mult;
     mult=num1*num2;
     QCOMPARE(mult, 807758040);
-}
+}*/
 
 QTEST_APPLESS_MAIN(CppTestsTest)
 
