@@ -15,9 +15,9 @@ private:
     vector<int> result;
 
 public:
-    KeysInText(vector<string> &);
+    KeysInText(const vector<string> &);
     ~KeysInText();
-    vector<int> & findKeys(vector<string> &);
+    vector<int> & findKeys(const vector<string> &);
 };
 
 

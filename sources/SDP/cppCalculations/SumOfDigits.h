@@ -8,7 +8,7 @@ using namespace std;
 class SumOfDigits
 {
 public:
-    static int Sum(int);
+    static int Sum(const int);
 };
 
 #endif // CPP_SUM_OF_DIGITS

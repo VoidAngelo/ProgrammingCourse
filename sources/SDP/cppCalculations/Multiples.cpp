@@ -1,7 +1,7 @@
 #include "Multiples.h"
 #include "Exceptions.h"
 
-Multiples::Multiples(vector<int> &nums)
+Multiples::Multiples(const vector<int> &nums)
 {
     for (unsigned int i=0; i<nums.size(); i++)
     {

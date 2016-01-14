@@ -30,7 +30,7 @@ MatrixTurn::MatrixTurn(int size, int** imatrix)
     }
 }
 
-MatrixTurn::MatrixTurn(MatrixTurn &obj)
+MatrixTurn::MatrixTurn(const MatrixTurn &obj)
 {
     sizeOfMatrix=obj.sizeOfMatrix;
     for(int i=0; i<sizeOfMatrix; i++)
@@ -51,13 +51,13 @@ MatrixTurn::~MatrixTurn()
     delete [] matrix;
 }
 
-void MatrixTurn::putNum(int i, int j, int num)
+void MatrixTurn::putNum(const int i, const int j, const int num)
 {
     matrix[i][j] = num;
 }
 
 
-int MatrixTurn::getNum(int i, int j)
+int MatrixTurn::getNum(const int i, const int j)
 {
     return matrix[i][j];
 }

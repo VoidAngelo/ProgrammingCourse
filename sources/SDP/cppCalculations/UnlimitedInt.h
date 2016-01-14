@@ -26,7 +26,7 @@ public:
     UnlimitedInt & operator+=(UnlimitedInt &);
     UnlimitedInt & operator-=(UnlimitedInt &);
     UnlimitedInt & operator*=(UnlimitedInt &);
-    int toInt();
+    operator int();
 
     friend ostream& operator<<(ostream& os, UnlimitedInt &);
 };

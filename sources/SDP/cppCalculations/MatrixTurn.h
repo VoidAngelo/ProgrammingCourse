@@ -14,10 +14,10 @@ private:
 public:
     MatrixTurn(int);
     MatrixTurn(int, int**);
-    MatrixTurn(MatrixTurn &);
+    MatrixTurn(const MatrixTurn &);
     ~MatrixTurn();
-    void putNum(int , int, int);
-    int getNum(int , int);
+    void putNum(const int , const int, const int);
+    int getNum(const int , const int);
     void turnMatrix() const;
 };
 

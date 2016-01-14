@@ -66,8 +66,8 @@ void UnlimitedIntDemo::checkMult()
 
 void UnlimitedIntDemo::checkToInt()
 {
-    cout << "Result of conversion of num1 to int is: " <<num1.toInt();
+    cout << "Result of conversion of num1 to int is: " <<int(num1);
     cout << endl;
-    cout << "Result of conversion of num2 to int is: " <<num2.toInt();
+    cout << "Result of conversion of num2 to int is: " <<int(num2);
     cout << endl;
 }

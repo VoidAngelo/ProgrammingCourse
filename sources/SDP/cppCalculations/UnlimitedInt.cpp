@@ -277,13 +277,13 @@ UnlimitedInt operator*(UnlimitedInt &num1, UnlimitedInt &num2)
     return temp-=num2;
 }
 
-int UnlimitedInt::toInt()
+UnlimitedInt::operator int()
 {
     int num_to_i=0;
     for (int i=0; i<sizeOfNum; i++)
     {
         num_to_i=num_to_i*10+num[i];
-        if(i>=5)
+        if(i>=8)
         {
             break;
         }

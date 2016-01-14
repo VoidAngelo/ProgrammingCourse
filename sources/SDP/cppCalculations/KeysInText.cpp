@@ -1,7 +1,7 @@
 #include "KeysInText.h"
 
 
-KeysInText::KeysInText(vector<string> &istrings)
+KeysInText::KeysInText(const vector<string> &istrings)
 {
     for (unsigned int i=0; i<istrings.size(); i++)
     {
@@ -14,7 +14,7 @@ KeysInText::~KeysInText()
     strings.clear();
 }
 
-vector<int> & KeysInText::findKeys(vector<string> &keys)
+vector<int> & KeysInText::findKeys(const vector<string> &keys)
 {
     int n;
     char * match;

@@ -13,7 +13,7 @@ private:
     vector<vector<int> > multiples;
 
 public:
-    Multiples(vector<int> &);
+    Multiples(const vector<int> &);
     ~Multiples();
     vector<vector<int> > & findMultiples();
 };

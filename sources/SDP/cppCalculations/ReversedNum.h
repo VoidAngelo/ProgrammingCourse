@@ -8,7 +8,7 @@ using namespace std;
 class ReversedNum
 {
 public:
-    static int Reversion(int);
+    static int Reversion(const int);
 };
 
 #endif // CPP_REVERSED_NUM
